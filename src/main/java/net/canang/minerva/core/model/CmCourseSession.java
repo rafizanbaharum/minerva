@@ -1,5 +1,7 @@
 package net.canang.minerva.core.model;
 
+import java.util.List;
+
 /**
  * NOTE: user CmCourseImpl as template
  *
@@ -9,5 +11,9 @@ package net.canang.minerva.core.model;
 public interface CmCourseSession extends CmMetaObject {
 
     CmSession getSession();
+
+    CmCourse getCourse();
+
+    List<CmCourseSessionModule> getModules();
 
 }

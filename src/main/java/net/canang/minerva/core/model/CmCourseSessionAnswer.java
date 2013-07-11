@@ -2,9 +2,9 @@ package net.canang.minerva.core.model;
 
 /**
  * @author rafizan.baharum
- * @since 7/10/13
+ * @since 7/11/13
  */
-public interface CmAnswer extends CmShareable, CmMetaObject {
+public interface CmCourseSessionAnswer extends CmMetaObject{
 
     String getText();
 

@@ -4,13 +4,14 @@ import java.util.List;
 
 /**
  * @author rafizan.baharum
- * @since 7/10/13
+ * @since 7/11/13
  */
-public interface CmQuiz extends CmAssessment, CmShareable {
+public interface CmCourseSessionQuizSection extends CmMetaObject{
 
     String getTitle();
 
     String getDescription();
 
-    List<CmQuizSection> getSections();
+    List<CmCourseSessionQuestion> getQuestions();
+
 }

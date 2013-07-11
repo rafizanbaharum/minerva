@@ -1,9 +1,8 @@
 package net.canang.minerva.core.model.impl;
 
-import net.canang.minerva.core.model.CmCourseSession;
-import net.canang.minerva.core.model.CmMetadata;
-import net.canang.minerva.core.model.CmQuestion;
-import net.canang.minerva.core.model.CmStudent;
+import net.canang.minerva.core.model.*;
+
+import java.util.List;
 
 /**
  * @author rafizan.baharum
@@ -12,8 +11,9 @@ import net.canang.minerva.core.model.CmStudent;
 public class CmQuestionImpl implements CmQuestion {
 
     private Long id;
-    private CmCourseSession course;
-    private CmStudent student;
+    private String title;
+    private String body;
+    private List<CmAnswer> answers;
 
     private CmMetadata metadata;
 
@@ -25,20 +25,28 @@ public class CmQuestionImpl implements CmQuestion {
         this.id = id;
     }
 
-    public CmCourseSession getCourse() {
-        return course;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCourse(CmCourseSession course) {
-        this.course = course;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public CmStudent getStudent() {
-        return student;
+    public String getBody() {
+        return body;
     }
 
-    public void setStudent(CmStudent student) {
-        this.student = student;
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public List<CmAnswer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<CmAnswer> answers) {
+        this.answers = answers;
     }
 
     public CmMetadata getMetadata() {

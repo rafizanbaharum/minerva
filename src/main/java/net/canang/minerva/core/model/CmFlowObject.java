@@ -11,4 +11,6 @@ public interface CmFlowObject extends CmMetaObject {
     String getSourceNo();
 
     CmFlowdata getFlowdata();
+
+    void setFlowdata(CmFlowdata flowdata);
 }

@@ -9,4 +9,6 @@ public interface CmMetaObject {
     Long getId();
 
     CmMetadata getMetadata();
+
+    void setMetadata(CmMetadata metadata);
 }
