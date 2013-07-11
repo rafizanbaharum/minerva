@@ -1,0 +1,119 @@
+Permission
+VIEW
+READ
+WRITE
+UPDATE
+DELETE
+
+
+
+User
+UserRole.USER
+UserRole.STUDENT
+UserRole.LECTURER
+UserRole.ASSISTANT
+UserRole.ADMINISTRATOR
+
+Module
+SubModule
+
+Consumer
+- Instructor
+- Student
+- Support
+ConsumerProfile
+
+Faculty
+Department
+Unit
+
+Catalog --> Course
+Course
+    - name
+    - description
+    - difficulty
+    - interactivityType
+    - interactivityLevel
+    - keywords
+    - status
+    - metadata
+        - version
+        - creator
+        - created timestamp
+        - modifier
+        - modified timestamp
+        - deletor
+        - deleted timestamp
+
+Course --> CourseModule
+CourseSubModule
+CourseAsset
+Lesson
+    - name
+    - title
+    - description
+    - part
+    - difficulty
+    - interactivityLevel
+    - keywords
+    - status
+    - order
+ContentFragment
+Asset
+    DiscreteAsset
+        - Text
+        - Image
+        - Graphic
+    ContinuousAsset
+        - Audio
+        - Video
+Session/Semester
+CourseSession
+CourseSessionModule
+CourseSessionSubModule
+Student ---> CourseSessionMembership
+CourseSessionAsset
+
+
+Asset
+    - Table
+    - Section
+    - Summary
+    - ShortDescription
+    - Reference
+    - Trademark
+    - Paragraph
+    - ListItem
+    - List
+    - Link
+    - Header
+    - Note
+    - FootNote
+        - Body
+    - Caption
+    - Cite
+    - Comment
+
+Assignment
+Examination
+Assessment
+
+AssessmentRepository
+Quiz
+QuizSection
+Question
+Answer
+
+GradeBook
+- Student
+Grade
+- CourseSession
+- GradeStrategy
+    - NumericalGradeStrategy
+    - AlphabetGradeStrategy
+- StudentGrades
+
+
+
+http://academia.edu/1089600/Design_and_Implementation_of_Learning_Object_Ontology_for_E-learning_Personalization
+
