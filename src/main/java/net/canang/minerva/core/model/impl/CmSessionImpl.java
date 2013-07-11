@@ -3,12 +3,16 @@ package net.canang.minerva.core.model.impl;
 import net.canang.minerva.core.model.CmMetadata;
 import net.canang.minerva.core.model.CmSession;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
+@Table(name = "CM_SESSION")
+@Entity(name = "CmSession")
 public class CmSessionImpl implements CmSession {
 
     private Long id;

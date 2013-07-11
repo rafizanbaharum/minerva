@@ -3,11 +3,16 @@ package net.canang.minerva.core.model.impl;
 import net.canang.minerva.core.model.CmAssessment;
 import net.canang.minerva.core.model.CmMetadata;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
-public class CmAssessmentImpl implements CmAssessment {
+@Table(name = "CM_ASSESSMENT")
+@Entity(name = "CmAssessment")
+public abstract class CmAssessmentImpl implements CmAssessment {
 
     private Long id;
     private CmMetadata metadata;

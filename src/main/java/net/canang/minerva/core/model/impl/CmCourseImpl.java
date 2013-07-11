@@ -2,10 +2,15 @@ package net.canang.minerva.core.model.impl;
 
 import net.canang.minerva.core.model.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
+@Table(name = "CM_COURSE")
+@Entity(name = "CmCourse")
 public class CmCourseImpl implements CmCourse {
 
     private Long id;

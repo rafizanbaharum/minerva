@@ -1,6 +1,6 @@
 package net.canang.minerva.core.model;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author rafizan.baharum
@@ -16,6 +16,6 @@ public interface CmDepartment {
 
     CmFaculty getFaculty();
 
-    Set<CmUnit> getUnits();
+    List<CmUnit> getUnits();
 
 }

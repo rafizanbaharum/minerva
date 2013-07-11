@@ -3,10 +3,15 @@ package net.canang.minerva.core.model.impl;
 import net.canang.minerva.core.model.CmCourseSessionAnswer;
 import net.canang.minerva.core.model.CmMetadata;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * @author rafizan.baharum
  * @since 7/11/13
  */
+@Table(name = "CM_COURSE_SESSION_ANSWER")
+@Entity(name = "CmCourseSessionAnswer")
 public class CmCourseSessionAnswerImpl implements CmCourseSessionAnswer {
 
     private Long id;

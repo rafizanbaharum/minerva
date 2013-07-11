@@ -1,11 +1,15 @@
 package net.canang.minerva.core.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.List;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
+@Table(name = "CM_COURSE_SESSION")
+@Entity(name = "CmCourseSession")
 public class CmCourseSessionImpl implements CmCourseSession {
 
     private Long id;

@@ -4,11 +4,16 @@ import net.canang.minerva.core.model.CmActor;
 import net.canang.minerva.core.model.CmActorType;
 import net.canang.minerva.core.model.CmMetadata;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
-public class CmActorImpl implements CmActor {
+@Table(name = "CM_ACTOR")
+@Entity(name = "CmActor")
+public abstract class CmActorImpl implements CmActor {
 
     private Long id;
     private String name;

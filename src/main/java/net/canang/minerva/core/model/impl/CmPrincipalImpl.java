@@ -3,10 +3,15 @@ package net.canang.minerva.core.model.impl;
 import net.canang.minerva.core.model.CmMetadata;
 import net.canang.minerva.core.model.CmPrincipal;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
+@Table(name = "CM_PRINCIPAL")
+@Entity(name = "CmPrincipal")
 public class CmPrincipalImpl implements CmPrincipal{
 
     private Long id;

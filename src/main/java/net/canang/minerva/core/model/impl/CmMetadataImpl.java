@@ -3,12 +3,14 @@ package net.canang.minerva.core.model.impl;
 import net.canang.minerva.core.model.CmMetaState;
 import net.canang.minerva.core.model.CmMetadata;
 
+import javax.persistence.Embeddable;
 import java.util.Date;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
+@Embeddable
 public class CmMetadataImpl implements CmMetadata {
 
     private Long creator;

@@ -2,12 +2,16 @@ package net.canang.minerva.core.model.impl;
 
 import net.canang.minerva.core.model.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.List;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
+@Table(name = "CM_QUESTION")
+@Entity(name = "CmQuestion")
 public class CmQuestionImpl implements CmQuestion {
 
     private Long id;

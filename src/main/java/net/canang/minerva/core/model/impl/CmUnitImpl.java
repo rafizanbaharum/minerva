@@ -1,28 +1,26 @@
 package net.canang.minerva.core.model.impl;
 
+import net.canang.minerva.core.model.CmDepartment;
 import net.canang.minerva.core.model.CmMetadata;
-import net.canang.minerva.core.model.CmModule;
-import net.canang.minerva.core.model.CmSubModule;
+import net.canang.minerva.core.model.CmUnit;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.util.Set;
 
 /**
  * @author rafizan.baharum
- * @since 7/10/13
+ * @since 7/11/13
  */
-@Table(name = "CM_MODULE")
-@Entity(name = "CmModule")
-public class CmModuleImpl implements CmModule {
+@Table(name = "CM_UNIT")
+@Entity(name = "CmUnit")
+public class CmUnitImpl implements CmUnit {
 
     private Long id;
     private String code;
     private String alias;
     private String description;
-    private Integer order;
-    private Set<CmSubModule> subModules;
 
+    private CmDepartment department;
     private CmMetadata metadata;
 
     public Long getId() {
@@ -57,20 +55,12 @@ public class CmModuleImpl implements CmModule {
         this.description = description;
     }
 
-    public Integer getOrder() {
-        return order;
+    public CmDepartment getDepartment() {
+        return department;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
-    }
-
-    public Set<CmSubModule> getSubModules() {
-        return subModules;
-    }
-
-    public void setSubModules(Set<CmSubModule> subModules) {
-        this.subModules = subModules;
+    public void setDepartment(CmDepartment department) {
+        this.department = department;
     }
 
     public CmMetadata getMetadata() {

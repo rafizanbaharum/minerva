@@ -4,10 +4,15 @@ import net.canang.minerva.core.model.CmMetadata;
 import net.canang.minerva.core.model.CmModule;
 import net.canang.minerva.core.model.CmSubModule;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
+@Table(name = "CM_SUB_MODULE")
+@Entity(name = "CmSubModule")
 public class CmSubModuleImpl implements CmSubModule {
 
     private Long id;

@@ -3,12 +3,16 @@ package net.canang.minerva.core.model.impl;
 import net.canang.minerva.core.model.CmQuiz;
 import net.canang.minerva.core.model.CmQuizSection;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.List;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
+@Table(name = "CM_QUIZ")
+@Entity(name = "CmQuiz")
 public class CmQuizImpl extends CmAssessmentImpl implements CmQuiz {
 
     private String title;

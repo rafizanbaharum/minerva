@@ -4,12 +4,16 @@ import net.canang.minerva.core.model.CmMetadata;
 import net.canang.minerva.core.model.CmQuestion;
 import net.canang.minerva.core.model.CmQuizSection;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.List;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
+@Table(name = "CM_QUIZ_SECTION")
+@Entity(name = "CmQuizSection")
 public class CmQuizSectionImpl implements CmQuizSection {
 
     private Long id;

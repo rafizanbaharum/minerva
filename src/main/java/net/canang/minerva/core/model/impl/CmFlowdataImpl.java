@@ -3,13 +3,17 @@ package net.canang.minerva.core.model.impl;
 import net.canang.minerva.core.model.CmFlowState;
 import net.canang.minerva.core.model.CmFlowdata;
 
+import javax.persistence.Embeddable;
 import java.util.Date;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
+@Embeddable
 public class CmFlowdataImpl implements CmFlowdata {
+    private Long drafter;
+    private Date draftedDate;
     private Long requester;
     private Date requestedDate;
     private Long registerer;
@@ -19,6 +23,22 @@ public class CmFlowdataImpl implements CmFlowdata {
     private Long approver;
     private Date approvedDate;
     private CmFlowState state;
+
+    public Long getDrafter() {
+        return drafter;
+    }
+
+    public void setDrafter(Long drafter) {
+        this.drafter = drafter;
+    }
+
+    public Date getDraftedDate() {
+        return draftedDate;
+    }
+
+    public void setDraftedDate(Date draftedDate) {
+        this.draftedDate = draftedDate;
+    }
 
     public Long getRequester() {
         return requester;
