@@ -2,23 +2,37 @@ package net.canang.minerva.core.model.impl;
 
 import net.canang.minerva.core.model.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
-@Table(name = "CM_QUESTION")
+@Table(name = "CM_QSTN")
 @Entity(name = "CmQuestion")
 public class CmQuestionImpl implements CmQuestion {
 
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "SEQ_CM_QSTN")
+    @SequenceGenerator(name = "SEQ_CM_QSTN", sequenceName = "SEQ_CM_QSTN", allocationSize = 1)
     private Long id;
+
+    @Column(name = "TITLE")
     private String title;
+
+    @Column(name = "BODY")
     private String body;
+
+    @OneToOne(targetEntity = CmQuizSectionImpl.class)
+    @JoinColumn(name = "SECTION_ID")
+    private CmQuizSection section;
+
+    @OneToMany(targetEntity = CmAnswerImpl.class, mappedBy = "question")
     private List<CmAnswer> answers;
 
+    @Embedded
     private CmMetadata metadata;
 
     public Long getId() {
@@ -43,6 +57,14 @@ public class CmQuestionImpl implements CmQuestion {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public CmQuizSection getSection() {
+        return section;
+    }
+
+    public void setSection(CmQuizSection section) {
+        this.section = section;
     }
 
     public List<CmAnswer> getAnswers() {

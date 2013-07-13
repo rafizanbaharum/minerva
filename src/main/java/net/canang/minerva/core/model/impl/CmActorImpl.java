@@ -4,28 +4,52 @@ import net.canang.minerva.core.model.CmActor;
 import net.canang.minerva.core.model.CmActorType;
 import net.canang.minerva.core.model.CmMetadata;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
-@Table(name = "CM_ACTOR")
+@Table(name = "CM_ACTR")
 @Entity(name = "CmActor")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class CmActorImpl implements CmActor {
 
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "SEQ_FS_ACTOR")
+    @SequenceGenerator(name = "SEQ_FS_ACTOR", sequenceName = "SEQ_FS_ACTOR", allocationSize = 1)
     private Long id;
+
+    @Column(name = "IDENTITY_NO")
+    private String identityNo;
+
+    @Column(name = "NAME")
     private String name;
+
+    @Column(name = "EMAIL")
     private String email;
+
+    @Column(name = "ADDRESS1")
     private String address1;
+
+    @Column(name = "ADDRESS2")
     private String address2;
+
+    @Column(name = "ADDRESS3")
     private String address3;
+
+    @Column(name = "ADDRESS4")
     private String phone;
+
+    @Column(name = "FAX")
     private String fax;
 
+    @Column(name = "ACTOR_TYPE")
     private CmActorType actorType;
-    private CmMetadata metadata;
+
+    @Embedded
+    private CmMetadata metadata = new CmMetadata();
 
     public Long getId() {
         return id;
@@ -33,6 +57,14 @@ public abstract class CmActorImpl implements CmActor {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getIdentityNo() {
+        return identityNo;
+    }
+
+    public void setIdentityNo(String identityNo) {
+        this.identityNo = identityNo;
     }
 
     public String getName() {

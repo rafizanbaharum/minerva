@@ -1,11 +1,10 @@
 package net.canang.minerva.core;
 
 import net.canang.minerva.core.dao.CmCourseSessionDao;
-import net.canang.minerva.core.model.CmCourse;
+import net.canang.minerva.core.dao.CmUserDao;
 import net.canang.minerva.core.model.CmCourseSession;
 import net.canang.minerva.core.model.CmCourseSessionImpl;
 import net.canang.minerva.core.model.CmUser;
-import net.canang.minerva.core.model.impl.CmCourseImpl;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,8 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.List;
 
 /**
  * @author rafizan.baharum

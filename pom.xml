@@ -15,7 +15,7 @@
         <activiti.version>5.6</activiti.version>
         <jackson.version>1.9.10</jackson.version>
         <springframework.version>3.2.3.RELEASE</springframework.version>
-        <spring-security.version>3.1.4.RELEASE</spring-security.version>
+        <spring-security.version>3.2.0.M2</spring-security.version>
         <spring-batch.version>2.1.8.RELEASE</spring-batch.version>
         <spring-web.version>3.2.3.RELEASE</spring-web.version>
         <spring-webmvc.verion>3.2.3.RELEASE</spring-webmvc.verion>
@@ -392,12 +392,9 @@
             <url>http://repo.springsource.org/release</url>
         </repository>
         <repository>
-            <id>OSGEO GeoTools repo</id>
-            <url>http://download.osgeo.org/webdav/geotools</url>
-        </repository>
-        <repository>
-            <id>Hibernate Spatial repo</id>
-            <url>http://www.hibernatespatial.org/repository</url>
+          <id>repository.springsource.milestone</id>
+          <name>SpringSource Milestone Repository</name>
+          <url>http://repo.springsource.org/milestone</url>
         </repository>
     </repositories>
 

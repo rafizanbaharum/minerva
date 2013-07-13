@@ -5,25 +5,40 @@ import net.canang.minerva.core.model.CmFaculty;
 import net.canang.minerva.core.model.CmMetadata;
 import net.canang.minerva.core.model.CmUnit;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * @author rafizan.baharum
  * @since 7/11/13
  */
-@Table(name = "CM_DEPARTMENT")
+@Table(name = "CM_DEPT")
 @Entity(name = "CmDepartment")
 public class CmDepartmentImpl implements CmDepartment {
 
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "SEQ_CM_DEPT")
+    @SequenceGenerator(name = "SEQ_CM_DEPT", sequenceName = "SEQ_CM_DEPT", allocationSize = 1)
     private Long id;
+
+    @Column(name = "CODE")
     private String code;
+
+    @Column(name = "ALIAS")
     private String alias;
+
+    @Column(name = "DESCRIPTION")
     private String description;
 
+    @OneToOne(targetEntity = CmFacultyImpl.class)
+    @JoinColumn(name = "FACULTY_ID")
     private CmFaculty faculty;
+
+    @OneToMany(targetEntity = CmUnitImpl.class, mappedBy = "department")
     private List<CmUnit> units;
+
+    @Embedded
     private CmMetadata metadata;
 
     public Long getId() {

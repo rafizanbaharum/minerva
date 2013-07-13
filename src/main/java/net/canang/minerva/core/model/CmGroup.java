@@ -8,6 +8,6 @@ import java.util.Set;
  */
 public interface CmGroup extends CmPrincipal {
 
-    Set<CmPrincipal> getMembers();
+    Set<CmGroupMember> getMembers();
 
 }

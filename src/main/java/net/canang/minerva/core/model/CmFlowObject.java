@@ -6,10 +6,6 @@ package net.canang.minerva.core.model;
  */
 public interface CmFlowObject extends CmMetaObject {
 
-    String getReferenceNo();
-
-    String getSourceNo();
-
     CmFlowdata getFlowdata();
 
     void setFlowdata(CmFlowdata flowdata);

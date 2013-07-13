@@ -2,27 +2,54 @@ package net.canang.minerva.core.model.impl;
 
 import net.canang.minerva.core.model.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author rafizan.baharum
  * @since 7/11/13
  */
-@Table(name = "CM_COURSE_SESSION_LESSON")
+@Table(name = "CM_CORS_SESN_LSSN")
 @Entity(name = "CmCourseSessionLesson")
 public class CmCourseSessionLessonImpl implements CmCourseSessionLesson {
 
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "SEQ_CM_CORS_SESN_LSSN")
+    @SequenceGenerator(name = "SEQ_CM_CORS_SESN_LSSN", sequenceName = "SEQ_CM_CORS_SESN_LSSN", allocationSize = 1)
     private Long id;
+
+    @Column(name = "NAME")
     private String name;
+
+    @Column(name = "TITLE")
     private String title;
+
+    @Column(name = "DESCRIPTION")
     private String description;
+
+    @Column(name = "KEYWORDS")
     private String keywords;
+
+    @Column(name = "ORDR")
     private Integer order;
+
+    @Enumerated(value = EnumType.ORDINAL)
+    @Column(name = "DIFFICULTY")
     private CmDifficulty difficulty;
+
+    @Enumerated(value = EnumType.ORDINAL)
+    @Column(name = "INTERACTIVITY_TYPE")
     private CmInteractivityType interactivityType;
+
+    @Enumerated(value = EnumType.ORDINAL)
+    @Column(name = "INTERACTIVITY_LEVEL")
     private CmInteractivityLevel interactivityLevel;
 
+    @OneToOne(targetEntity = CmCourseSessionModuleImpl.class)
+    @JoinColumn(name = "MODULE_ID")
+    private CmCourseSessionModule module;
+
+    @Embedded
     private CmMetadata metadata;
 
     public Long getId() {
@@ -95,6 +122,14 @@ public class CmCourseSessionLessonImpl implements CmCourseSessionLesson {
 
     public void setInteractivityLevel(CmInteractivityLevel interactivityLevel) {
         this.interactivityLevel = interactivityLevel;
+    }
+
+    public CmCourseSessionModule getModule() {
+        return module;
+    }
+
+    public void setModule(CmCourseSessionModule module) {
+        this.module = module;
     }
 
     public CmMetadata getMetadata() {

@@ -22,4 +22,5 @@ public interface CmCourseSessionLesson extends CmMetaObject{
 
     CmInteractivityLevel getInteractivityLevel();
 
+    CmCourseSessionModule getModule();
 }

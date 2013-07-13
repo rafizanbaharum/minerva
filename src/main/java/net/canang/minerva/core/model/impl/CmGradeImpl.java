@@ -2,22 +2,35 @@ package net.canang.minerva.core.model.impl;
 
 import net.canang.minerva.core.model.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
-@Table(name = "CM_GRADE")
+@Table(name = "CM_GRDE")
 @Entity(name = "CmGrade")
 public class CmGradeImpl implements CmGrade {
 
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "SEQ_CM_GRDE")
+    @SequenceGenerator(name = "SEQ_CM_GRDE", sequenceName = "SEQ_CM_GRDE", allocationSize = 1)
     private Long id;
-    private CmStudent student;
-    private CmAssessment assessment;
-    private CmGradeBook book;
 
+    @OneToOne(targetEntity = CmStudentImpl.class)
+    @JoinColumn(name = "STUDENT_ID")
+    private CmStudent student;
+
+    @OneToOne(targetEntity = CmAssessmentImpl.class)
+    @JoinColumn(name = "ASSESSMENT_ID")
+    private CmAssessment assessment;
+
+    @OneToOne(targetEntity = CmGradebookImpl.class)
+    @JoinColumn(name = "GRADEBOOK_ID")
+    private CmGradebook gradebook;
+
+    @Embedded
     private CmMetadata metadata;
 
     public Long getId() {
@@ -44,12 +57,12 @@ public class CmGradeImpl implements CmGrade {
         this.assessment = assessment;
     }
 
-    public CmGradeBook getBook() {
-        return book;
+    public CmGradebook getGradebook() {
+        return gradebook;
     }
 
-    public void setBook(CmGradeBook book) {
-        this.book = book;
+    public void setGradebook(CmGradebook gradebook) {
+        this.gradebook = gradebook;
     }
 
     public CmMetadata getMetadata() {

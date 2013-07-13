@@ -2,29 +2,49 @@ package net.canang.minerva.core.model.impl;
 
 import net.canang.minerva.core.model.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * @author rafizan.baharum
  * @since 7/11/13
  */
-@Table(name = "CM_COURSE_SESSION_MODULE")
+@Table(name = "CM_CORS_SESN_MODL")
 @Entity(name = "CmCourseSessionModule")
 public class CmCourseSessionModuleImpl implements CmCourseSessionModule {
 
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "SEQ_CM_CORS_SESN_MODL")
+    @SequenceGenerator(name = "SEQ_CM_CORS_SESN_MODL", sequenceName = "SEQ_CM_CORS_SESN_MODL", allocationSize = 1)
     private Long id;
+
+    @Column(name = "NAME")
     private String name;
+
+    @Column(name = "TITLE")
     private String title;
+
+    @Column(name = "DESCRIPTION")
     private String description;
+
+    @Column(name = "KEYWORDS")
     private String keywords;
+
+    @Column(name = "ORDR")
     private Integer order;
 
+    @OneToOne(targetEntity = CmCourseSessionImpl.class)
+    @JoinColumn(name = "COURSE_ID")
     private CmCourseSession course;
+
+    @OneToMany(targetEntity = CmCourseSessionLessonImpl.class, mappedBy = "module")
     private List<CmCourseSessionLesson> lessons;
+
+    @OneToMany(targetEntity = CmCourseSessionQuizImpl.class, mappedBy = "module")
     private List<CmCourseSessionQuiz> quizzes;
 
+    @Embedded
     private CmMetadata metadata;
 
     public Long getId() {

@@ -2,51 +2,30 @@ package net.canang.minerva.core.model.impl;
 
 import net.canang.minerva.core.model.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
-@Table(name = "CM_COURSE_REGISTRATION")
+@Table(name = "CM_CORS_RGTN")
 @Entity(name = "CmCourseRegistration")
-public class CmCourseRegistrationImpl implements CmCourseRegistration {
+public class CmCourseRegistrationImpl extends CmDocumentImpl implements CmCourseRegistration {
 
-    private Long id;
-    private String referenceNo;
-    private String sourceNo;
+    @Column(name = "REQUIRED")
     private boolean required;
+
+    @OneToOne(targetEntity = CmSessionImpl.class)
+    @JoinColumn(name = "SESSION_ID")
     private CmSession session;
+
+    @OneToOne(targetEntity = CmCourseImpl.class)
+    @JoinColumn(name = "COURSE_ID")
     private CmCourse course;
+
+    @OneToOne(targetEntity = CmStudentImpl.class)
+    @JoinColumn(name = "STUDENT_ID")
     private CmStudent student;
-
-    private CmMetadata metadata;
-    private CmFlowdata flowdata;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getReferenceNo() {
-        return referenceNo;
-    }
-
-    public void setReferenceNo(String referenceNo) {
-        this.referenceNo = referenceNo;
-    }
-
-    public String getSourceNo() {
-        return sourceNo;
-    }
-
-    public void setSourceNo(String sourceNo) {
-        this.sourceNo = sourceNo;
-    }
 
     public boolean isRequired() {
         return required;
@@ -78,21 +57,5 @@ public class CmCourseRegistrationImpl implements CmCourseRegistration {
 
     public void setStudent(CmStudent student) {
         this.student = student;
-    }
-
-    public CmMetadata getMetadata() {
-        return metadata;
-    }
-
-    public void setMetadata(CmMetadata metadata) {
-        this.metadata = metadata;
-    }
-
-    public CmFlowdata getFlowdata() {
-        return flowdata;
-    }
-
-    public void setFlowdata(CmFlowdata flowdata) {
-        this.flowdata = flowdata;
     }
 }

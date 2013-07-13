@@ -4,25 +4,39 @@ import net.canang.minerva.core.model.CmMetadata;
 import net.canang.minerva.core.model.CmModule;
 import net.canang.minerva.core.model.CmSubModule;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
-@Table(name = "CM_MODULE")
+@Table(name = "CM_MODL")
 @Entity(name = "CmModule")
 public class CmModuleImpl implements CmModule {
 
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "SEQ_CM_MODL")
+    @SequenceGenerator(name = "SEQ_CM_MODL", sequenceName = "SEQ_CM_MODL", allocationSize = 1)
     private Long id;
+
+    @Column(name = "CODE")
     private String code;
+
+    @Column(name = "ALIAS")
     private String alias;
+
+    @Column(name = "DESCRIPTION")
     private String description;
+
+    @Column(name = "ORDR")
     private Integer order;
+
+    @OneToMany(targetEntity = CmSubModuleImpl.class, mappedBy = "module", fetch = FetchType.EAGER)
     private Set<CmSubModule> subModules;
 
+    @Embedded
     private CmMetadata metadata;
 
     public Long getId() {

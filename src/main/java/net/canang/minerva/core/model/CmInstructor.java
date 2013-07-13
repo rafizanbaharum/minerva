@@ -6,5 +6,8 @@ package net.canang.minerva.core.model;
  */
 public interface CmInstructor extends CmActor {
 
+    String getStaffNo();
+
+    void setStaffNo(String staffNo);
 
 }

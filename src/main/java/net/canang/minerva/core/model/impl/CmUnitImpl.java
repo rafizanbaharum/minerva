@@ -4,8 +4,7 @@ import net.canang.minerva.core.model.CmDepartment;
 import net.canang.minerva.core.model.CmMetadata;
 import net.canang.minerva.core.model.CmUnit;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author rafizan.baharum
@@ -15,12 +14,26 @@ import javax.persistence.Table;
 @Entity(name = "CmUnit")
 public class CmUnitImpl implements CmUnit {
 
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "SEQ_CM_UNIT")
+    @SequenceGenerator(name = "SEQ_CM_UNIT", sequenceName = "SEQ_CM_UNIT", allocationSize = 1)
     private Long id;
+
+    @Column(name = "CODE")
     private String code;
+
+    @Column(name = "ALIAS")
     private String alias;
+
+    @Column(name = "DESCRIPTION")
     private String description;
 
+    @OneToOne(targetEntity = CmDepartmentImpl.class)
+    @JoinColumn(name = "DEPARTMENT_ID")
     private CmDepartment department;
+
+    @Embedded
     private CmMetadata metadata;
 
     public Long getId() {

@@ -2,26 +2,48 @@ package net.canang.minerva.core.model.impl;
 
 import net.canang.minerva.core.model.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
-@Table(name = "CM_COURSE")
+@Table(name = "CM_CORS")
 @Entity(name = "CmCourse")
 public class CmCourseImpl implements CmCourse {
 
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "SEQ_CM_CORS")
+    @SequenceGenerator(name = "SEQ_CM_CORS", sequenceName = "SEQ_CM_CORS", allocationSize = 1)
     private Long id;
+
+    @Column(name = "NAME")
     private String name;
+
+    @Column(name = "DESCRIPTION")
     private String description;
+
+    @Column(name = "KEYWORDS")
     private String keywords;
+
+    @Enumerated(value = EnumType.ORDINAL)
+    @Column(name = "DIFFICULTY")
     private CmDifficulty difficulty;
+
+    @Enumerated(value = EnumType.ORDINAL)
+    @Column(name = "INTERACTIVITY_TYPE")
     private CmInteractivityType interactivityType;
+
+    @Enumerated(value = EnumType.ORDINAL)
+    @Column(name = "INTERACTIVITY_LEVEL")
     private CmInteractivityLevel interactivityLevel;
 
+    @OneToOne(targetEntity = CmDepartmentImpl.class)
+    @JoinColumn(name = "DEPARTMENT_ID")
     private CmDepartment department;
+
+    @Embedded
     private CmMetadata metadata;
 
     public Long getId() {

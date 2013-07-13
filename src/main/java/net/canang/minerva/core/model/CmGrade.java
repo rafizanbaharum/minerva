@@ -6,7 +6,7 @@ package net.canang.minerva.core.model;
  */
 public interface CmGrade extends CmMetaObject{
 
-    CmGradeBook getBook();
+    CmGradebook getGradebook();
 
     CmStudent getStudent();
 

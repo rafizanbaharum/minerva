@@ -12,5 +12,7 @@ public interface CmCourseSessionQuiz extends CmMetaObject {
 
     String getDescription();
 
+    CmCourseSessionModule getModule();
+
     List<CmCourseSessionQuizSection> getSections();
 }

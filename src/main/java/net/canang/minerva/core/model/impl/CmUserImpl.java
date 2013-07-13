@@ -1,9 +1,9 @@
 package net.canang.minerva.core.model.impl;
 
+import net.canang.minerva.core.model.CmActor;
 import net.canang.minerva.core.model.CmUser;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author rafizan.baharum
@@ -13,13 +13,25 @@ import javax.persistence.Table;
 @Entity(name = "CmUser")
 public class CmUserImpl extends CmPrincipalImpl implements CmUser {
 
+    @Column(name = "REALNAME")
     private String realname;
+
+    @Column(name = "PASSWORD")
     private String password;
+
+    @Column(name = "EMAIL")
     private String email;
 
+    @OneToOne(targetEntity = CmActorImpl.class)
+    @JoinColumn(name = "ACTOR_ID")
+    private CmActor actor;
 
     public String getUsername() {
         return getName();
+    }
+
+    public void setUsername(String username) {
+        setName(username);
     }
 
     public String getRealname() {
@@ -44,6 +56,14 @@ public class CmUserImpl extends CmPrincipalImpl implements CmUser {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public CmActor getActor() {
+        return actor;
+    }
+
+    public void setActor(CmActor actor) {
+        this.actor = actor;
     }
 
     @Override

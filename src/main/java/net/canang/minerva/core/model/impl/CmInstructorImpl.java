@@ -9,7 +9,16 @@ import javax.persistence.Table;
  * @author rafizan.baharum
  * @since 7/10/13
  */
-@Table(name = "CM_INSTRUCTOR")
+@Table(name = "CM_INTR")
 @Entity(name = "CmInstructor")
-public class CmInstructorImpl extends CmActorImpl implements CmInstructor{
+public class CmInstructorImpl extends CmActorImpl implements CmInstructor {
+
+    public String getStaffNo() {
+        return getIdentityNo();
+    }
+
+    public void setStaffNo(String staffNo) {
+        setIdentityNo(staffNo);
+    }
+
 }

@@ -1,39 +1,94 @@
 package net.canang.minerva.core.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.Date;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
-public interface CmMetadata {
+@Embeddable
+public class CmMetadata {
 
-    Long getCreator();
+    @Column(name = "C_ID")
+    private Long creator;
 
-    void setCreator(Long id);
+    @Column(name = "C_TS")
+    private Date createdDate;
 
-    Date getCreatedDate();
+    @Column(name = "M_ID")
+    private Long modifier;
 
-    void setCreatedDate(Date createdDate);
+    @Column(name = "M_TS")
+    private Date modifiedDate;
 
-    Long getModifier();
+    @Column(name = "D_ID")
+    private Long deleter;
 
-    void setModifier(Long modifier);
+    @Column(name = "D_TS")
+    private Date deletedDate;
 
-    Date getModifiedDate();
+    @Enumerated(value = EnumType.ORDINAL)
+    @Column(name = "M_ST")
+    private CmMetaState state;
 
-    void setModifiedDate(Date modifiedDate);
+    public Long getCreator() {
+        return creator;
+    }
 
-    Long getDeleter();
+    public void setCreator(Long creator) {
+        this.creator = creator;
+    }
 
-    void setDeleter(Long deleter);
+    public Date getCreatedDate() {
+        return createdDate;
+    }
 
-    Date getDeletedDate();
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
 
-    void setDeletedDate(Date deletedDate);
+    public Long getModifier() {
+        return modifier;
+    }
 
-    CmMetaState getState();
+    public void setModifier(Long modifier) {
+        this.modifier = modifier;
+    }
 
-    void setState(CmMetaState state);
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Long getDeleter() {
+        return deleter;
+    }
+
+    public void setDeleter(Long deleter) {
+        this.deleter = deleter;
+    }
+
+    public Date getDeletedDate() {
+        return deletedDate;
+    }
+
+    public void setDeletedDate(Date deletedDate) {
+        this.deletedDate = deletedDate;
+    }
+
+    public CmMetaState getState() {
+        return state;
+    }
+
+    public void setState(CmMetaState state) {
+        this.state = state;
+    }
 
 }

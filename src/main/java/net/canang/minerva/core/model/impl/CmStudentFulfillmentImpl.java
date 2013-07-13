@@ -2,22 +2,35 @@ package net.canang.minerva.core.model.impl;
 
 import net.canang.minerva.core.model.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
-@Table(name = "CM_STUDENT_FULFILLMENT")
+@Table(name = "CM_STDN_FMNT")
 @Entity(name = "CmStudentFulfillment")
 public class CmStudentFulfillmentImpl implements CmStudentFulfillment {
 
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "SEQ_CM_STDN_FMNT")
+    @SequenceGenerator(name = "SEQ_CM_STDN_FMNT", sequenceName = "SEQ_CM_STDN_FMNT", allocationSize = 1)
     private Long id;
+
+    @OneToOne(targetEntity = CmCourseSessionImpl.class)
+    @JoinColumn(name = "COURSE_ID")
     private CmCourseSession course;
+
+    @OneToOne(targetEntity = CmStudentImpl.class)
+    @JoinColumn(name = "STUDENT_ID")
     private CmStudent student;
+
+    @OneToOne(targetEntity = CmGradeImpl.class)
+    @JoinColumn(name = "GRADE_ID")
     private CmGrade finalGrade;
 
+    @Embedded
     private CmMetadata metadata;
 
     public Long getId() {

@@ -3,7 +3,10 @@ package net.canang.minerva.core.model.impl;
 import net.canang.minerva.core.model.CmFlowState;
 import net.canang.minerva.core.model.CmFlowdata;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.Date;
 
 /**
@@ -12,16 +15,39 @@ import java.util.Date;
  */
 @Embeddable
 public class CmFlowdataImpl implements CmFlowdata {
+
+    @Column(name = "DF_ID")
     private Long drafter;
+
+    @Column(name = "DF_TS")
     private Date draftedDate;
+
+    @Column(name = "RQ_ID")
     private Long requester;
+
+    @Column(name = "RQ_TS")
     private Date requestedDate;
+
+    @Column(name = "RG_ID")
     private Long registerer;
+
+    @Column(name = "RG_TS")
     private Date registeredDate;
+
+    @Column(name = "VF_ID")
     private Long verifier;
+
+    @Column(name = "VF_TS")
     private Date verifiedDate;
+
+    @Column(name = "AV_ID")
     private Long approver;
+
+    @Column(name = "AV_TS")
     private Date approvedDate;
+
+    @Enumerated(value = EnumType.ORDINAL)
+    @Column(name = "F_ST")
     private CmFlowState state;
 
     public Long getDrafter() {

@@ -11,9 +11,7 @@ import org.activiti.engine.task.TaskQuery;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
@@ -38,22 +36,22 @@ public class WorkflowManagerImpl extends ManagerSupport implements WorkflowManag
     @Autowired
     protected CmGroupDao groupDao;
 
-    @Autowired
+    @Autowired(required = false)
     protected ProcessEngine processEngine;
 
-    @Autowired
+    @Autowired(required = false)
     protected RuntimeService runtimeService;
 
-    @Autowired
+    @Autowired(required = false)
     protected TaskService taskService;
 
-    @Autowired
+    @Autowired(required = false)
     protected IdentityService identityService;
 
-    @Autowired
+    @Autowired(required = false)
     protected HistoryService historyService;
 
-    @Autowired
+    @Autowired(required = false)
     protected RepositoryService repositoryService;
 
     // ==================================================================================================== //

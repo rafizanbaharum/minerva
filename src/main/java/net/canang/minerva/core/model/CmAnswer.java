@@ -10,6 +10,6 @@ public interface CmAnswer extends CmShareable, CmMetaObject {
 
     Integer getOrder();
 
-    boolean isAnswer();
+    boolean isCorrect();
 
 }

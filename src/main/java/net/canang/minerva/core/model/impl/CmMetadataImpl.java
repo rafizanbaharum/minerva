@@ -1,9 +1,11 @@
 package net.canang.minerva.core.model.impl;
 
 import net.canang.minerva.core.model.CmMetaState;
-import net.canang.minerva.core.model.CmMetadata;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.Date;
 
 /**
@@ -11,17 +13,28 @@ import java.util.Date;
  * @since 7/10/13
  */
 @Embeddable
-public class CmMetadataImpl implements CmMetadata {
+public class CmMetadataImpl {
 
+    @Column(name = "C_ID")
     private Long creator;
+
+    @Column(name = "C_TS")
     private Date createdDate;
 
+    @Column(name = "M_ID")
     private Long modifier;
+
+    @Column(name = "M_TS")
     private Date modifiedDate;
 
+    @Column(name = "D_ID")
     private Long deleter;
+
+    @Column(name = "D_TS")
     private Date deletedDate;
 
+    @Enumerated(value = EnumType.ORDINAL)
+    @Column(name = "M_ST")
     private CmMetaState state;
 
     public Long getCreator() {

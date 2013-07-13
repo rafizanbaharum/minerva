@@ -10,6 +10,6 @@ public interface CmCourseSessionAnswer extends CmMetaObject{
 
     Integer getOrder();
 
-    boolean isAnswer();
+    boolean isCorrect();
 
 }

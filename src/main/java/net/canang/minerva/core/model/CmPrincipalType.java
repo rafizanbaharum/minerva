@@ -2,10 +2,10 @@ package net.canang.minerva.core.model;
 
 /**
  * @author rafizan.baharum
- * @since 7/10/13
+ * @since 7/11/13
  */
-public enum CmUserRole {
+public enum CmPrincipalType {
 
-    ADMINISTRATOR,
-    STUDENT
+    USER,
+    GROUP
 }

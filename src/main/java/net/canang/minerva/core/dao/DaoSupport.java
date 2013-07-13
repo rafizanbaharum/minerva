@@ -2,7 +2,6 @@ package net.canang.minerva.core.dao;
 
 import net.canang.minerva.core.model.*;
 import net.canang.minerva.core.model.impl.CmFlowdataImpl;
-import net.canang.minerva.core.model.impl.CmMetadataImpl;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
@@ -87,7 +86,7 @@ public class DaoSupport<K, I, E> implements InitializingBean {
             if (((CmMetaObject) i).getMetadata() != null)
                 metadata = ((CmMetaObject) i).getMetadata();
             else
-                metadata = new CmMetadataImpl();
+                metadata = new CmMetadata();
             metadata.setCreatedDate(new Timestamp(System.currentTimeMillis()));
             metadata.setCreator(user.getId());
             metadata.setState(CmMetaState.ACTIVE);
@@ -117,9 +116,7 @@ public class DaoSupport<K, I, E> implements InitializingBean {
      * @throws org.springframework.dao.DataAccessException
      *
      */
-    public I save(I entity, CmUser user) {
-
-        // sanity check
+    public void save(I entity, CmUser user) {
         Validate.notNull(user, "User cannot be null");
         Validate.notNull(entity, "Object cannot be null");
 
@@ -136,7 +133,6 @@ public class DaoSupport<K, I, E> implements InitializingBean {
         } catch (HibernateException e) {
             log.debug("error occured", e);
         }
-        return entity;
     }
 
     /**
@@ -146,7 +142,7 @@ public class DaoSupport<K, I, E> implements InitializingBean {
      * @throws org.springframework.dao.DataAccessException
      *
      */
-    public I saveOrUpdate(I entity, CmUser user) {
+    public void saveOrUpdate(I entity, CmUser user) {
 
         // sanity check
         Validate.notNull(user, "User cannot be null");
@@ -165,10 +161,9 @@ public class DaoSupport<K, I, E> implements InitializingBean {
         } catch (HibernateException e) {
             log.debug("error occured", e);
         }
-        return entity;
     }
 
-    public I save(Session session, I i, CmUser user) {
+    public void save(Session session, I i, CmUser user) {
 
         // sanity check
         // sanity check
@@ -181,8 +176,6 @@ public class DaoSupport<K, I, E> implements InitializingBean {
 
         // save
         session.save(i);
-
-        return i;
     }
 
     /**
@@ -192,7 +185,7 @@ public class DaoSupport<K, I, E> implements InitializingBean {
      * @throws org.springframework.dao.DataAccessException
      *
      */
-    public I update(I entity, CmUser user) {
+    public void update(I entity, CmUser user) {
 
         // sanity check
         // sanity check
@@ -205,7 +198,7 @@ public class DaoSupport<K, I, E> implements InitializingBean {
         // prepare metadata
         CmMetadata metadata = ((CmMetaObject) entity).getMetadata();
         if (null == metadata) {
-            metadata = new CmMetadataImpl();
+            metadata = new CmMetadata();
             metadata.setCreatedDate(new Timestamp(System.currentTimeMillis()));
             metadata.setCreator(user.getId());
             metadata.setState(CmMetaState.ACTIVE);
@@ -216,8 +209,6 @@ public class DaoSupport<K, I, E> implements InitializingBean {
 
         // update
         session.update(entity);
-
-        return entity;
     }
 
 
@@ -228,10 +219,7 @@ public class DaoSupport<K, I, E> implements InitializingBean {
      * @throws org.springframework.dao.DataAccessException
      *
      */
-    public I deactivate(I entity, CmUser user) {
-
-        // sanity check
-        // sanity check
+    public void deactivate(I entity, CmUser user) {
         Validate.notNull(user, "User cannot be null");
         Validate.notNull(entity, "Object cannot be null");
 
@@ -241,7 +229,7 @@ public class DaoSupport<K, I, E> implements InitializingBean {
         // prepare metadata
         CmMetadata metadata = ((CmMetaObject) entity).getMetadata();
         if (null == metadata) {
-            metadata = new CmMetadataImpl();
+            metadata = new CmMetadata();
             metadata.setCreatedDate(new Timestamp(System.currentTimeMillis()));
             metadata.setCreator(user.getId());
         }
@@ -253,8 +241,6 @@ public class DaoSupport<K, I, E> implements InitializingBean {
 
         // update
         session.update(entity);
-
-        return entity;
     }
 
     /**

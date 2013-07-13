@@ -10,6 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
  * @since 7/11/13
  */
 @SuppressWarnings({"unchecked"})
+@Repository("courseSessionDao")
 public class CmCourseSessionDaoImpl extends DaoSupport<Long, CmCourseSession, CmCourseSessionImpl> implements CmCourseSessionDao {
 
     @Autowired
