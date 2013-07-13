@@ -1,8 +1,8 @@
 package net.canang.minerva.core.model.impl;
 
-import net.canang.minerva.core.model.CmAnswer;
+import net.canang.minerva.core.model.CmCourseAnswer;
+import net.canang.minerva.core.model.CmCourseQuestion;
 import net.canang.minerva.core.model.CmMetadata;
-import net.canang.minerva.core.model.CmQuestion;
 
 import javax.persistence.*;
 
@@ -10,14 +10,14 @@ import javax.persistence.*;
  * @author rafizan.baharum
  * @since 7/13/13
  */
-@Table(name = "CM_ANSR")
-@Entity(name = "CmAnswer")
-public class CmAnswerImpl implements CmAnswer {
+@Table(name = "CM_CORS_ANSR")
+@Entity(name = "CmCourseAnswer")
+public class CmAnswerImpl implements CmCourseAnswer {
 
     @Id
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(generator = "SEQ_CM_ANSR")
-    @SequenceGenerator(name = "SEQ_CM_ANSR", sequenceName = "SEQ_CM_ANSR", allocationSize = 1)
+    @GeneratedValue(generator = "SEQ_CM_CORS_ANSR")
+    @SequenceGenerator(name = "SEQ_CM_CORS_ANSR", sequenceName = "SEQ_CM_CORS_ANSR", allocationSize = 1)
     private Long id;
 
     @Column(name = "TXT")
@@ -29,9 +29,9 @@ public class CmAnswerImpl implements CmAnswer {
     @Column(name = "CORRECT")
     private boolean correct;
 
-    @OneToOne(targetEntity = CmQuestionImpl.class)
+    @OneToOne(targetEntity = CmCourseQuestionImpl.class)
     @JoinColumn(name = "QUESTION_ID")
-    private CmQuestion question;
+    private CmCourseQuestion question;
 
     @Embedded
     private CmMetadata metadata = new CmMetadata();
@@ -60,11 +60,11 @@ public class CmAnswerImpl implements CmAnswer {
         this.order = order;
     }
 
-    public CmQuestion getQuestion() {
+    public CmCourseQuestion getQuestion() {
         return question;
     }
 
-    public void setQuestion(CmQuestion question) {
+    public void setQuestion(CmCourseQuestion question) {
         this.question = question;
     }
 

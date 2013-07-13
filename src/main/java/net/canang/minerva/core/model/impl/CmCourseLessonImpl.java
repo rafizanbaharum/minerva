@@ -3,30 +3,35 @@ package net.canang.minerva.core.model.impl;
 import net.canang.minerva.core.model.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * @author rafizan.baharum
- * @since 7/10/13
+ * @since 7/11/13
  */
-@Table(name = "CM_CORS")
-@Entity(name = "CmCourse")
-public class CmCourseImpl implements CmCourse {
+@Table(name = "CM_CORS_LSSN")
+@Entity(name = "CmCourseLesson")
+public class CmCourseLessonImpl implements CmCourseLesson {
 
     @Id
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(generator = "SEQ_CM_CORS")
-    @SequenceGenerator(name = "SEQ_CM_CORS", sequenceName = "SEQ_CM_CORS", allocationSize = 1)
+    @GeneratedValue(generator = "SEQ_CM_CORS_LSSN")
+    @SequenceGenerator(name = "SEQ_CM_CORS_LSSN", sequenceName = "SEQ_CM_CORS_LSSN", allocationSize = 1)
     private Long id;
 
     @Column(name = "NAME")
     private String name;
+
+    @Column(name = "TITLE")
+    private String title;
 
     @Column(name = "DESCRIPTION")
     private String description;
 
     @Column(name = "KEYWORDS")
     private String keywords;
+
+    @Column(name = "ORDR")
+    private Integer order;
 
     @Enumerated(value = EnumType.ORDINAL)
     @Column(name = "DIFFICULTY")
@@ -39,16 +44,6 @@ public class CmCourseImpl implements CmCourse {
     @Enumerated(value = EnumType.ORDINAL)
     @Column(name = "INTERACTIVITY_LEVEL")
     private CmInteractivityLevel interactivityLevel;
-
-    @OneToOne(targetEntity = CmDepartmentImpl.class)
-    @JoinColumn(name = "DEPARTMENT_ID")
-    private CmDepartment department;
-
-    @OneToMany(targetEntity = CmCourseAssetImpl.class, mappedBy = "course")
-    private List<CmCourseAsset> assets;
-
-    @OneToMany(targetEntity = CmCourseSessionAnswerImpl.class, mappedBy = "course")
-    private List<CmCourseModule> modules;
 
     @Embedded
     private CmMetadata metadata;
@@ -69,6 +64,14 @@ public class CmCourseImpl implements CmCourse {
         this.name = name;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -83,6 +86,14 @@ public class CmCourseImpl implements CmCourse {
 
     public void setKeywords(String keywords) {
         this.keywords = keywords;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 
     public CmDifficulty getDifficulty() {
@@ -107,30 +118,6 @@ public class CmCourseImpl implements CmCourse {
 
     public void setInteractivityLevel(CmInteractivityLevel interactivityLevel) {
         this.interactivityLevel = interactivityLevel;
-    }
-
-    public CmDepartment getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(CmDepartment department) {
-        this.department = department;
-    }
-
-    public List<CmCourseAsset> getAssets() {
-        return assets;
-    }
-
-    public void setAssets(List<CmCourseAsset> assets) {
-        this.assets = assets;
-    }
-
-    public List<CmCourseModule> getModules() {
-        return modules;
-    }
-
-    public void setModules(List<CmCourseModule> modules) {
-        this.modules = modules;
     }
 
     public CmMetadata getMetadata() {

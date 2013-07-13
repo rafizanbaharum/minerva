@@ -6,11 +6,11 @@ import java.util.List;
  * @author rafizan.baharum
  * @since 7/10/13
  */
-public interface CmQuizSection extends CmMetaObject{
+public interface CmCourseQuizSection extends CmMetaObject{
 
     String getTitle();
 
     String getDescription();
 
-    List<CmQuestion> getQuestions();
+    List<CmCourseQuestion> getQuestions();
 }

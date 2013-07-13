@@ -9,14 +9,14 @@ import java.util.List;
  * @author rafizan.baharum
  * @since 7/10/13
  */
-@Table(name = "CM_QSTN")
-@Entity(name = "CmQuestion")
-public class CmQuestionImpl implements CmQuestion {
+@Table(name = "CM_CORS_QSTN")
+@Entity(name = "CmCourseQuestion")
+public class CmCourseQuestionImpl implements CmCourseQuestion {
 
     @Id
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(generator = "SEQ_CM_QSTN")
-    @SequenceGenerator(name = "SEQ_CM_QSTN", sequenceName = "SEQ_CM_QSTN", allocationSize = 1)
+    @GeneratedValue(generator = "SEQ_CM_CORS_QSTN")
+    @SequenceGenerator(name = "SEQ_CM_CORS_QSTN", sequenceName = "SEQ_CM_CORS_QSTN", allocationSize = 1)
     private Long id;
 
     @Column(name = "TITLE")
@@ -25,12 +25,12 @@ public class CmQuestionImpl implements CmQuestion {
     @Column(name = "BODY")
     private String body;
 
-    @OneToOne(targetEntity = CmQuizSectionImpl.class)
+    @OneToOne(targetEntity = CmCourseQuizSectionImpl.class)
     @JoinColumn(name = "SECTION_ID")
-    private CmQuizSection section;
+    private CmCourseQuizSection section;
 
     @OneToMany(targetEntity = CmAnswerImpl.class, mappedBy = "question")
-    private List<CmAnswer> answers;
+    private List<CmCourseAnswer> answers;
 
     @Embedded
     private CmMetadata metadata;
@@ -59,19 +59,19 @@ public class CmQuestionImpl implements CmQuestion {
         this.body = body;
     }
 
-    public CmQuizSection getSection() {
+    public CmCourseQuizSection getSection() {
         return section;
     }
 
-    public void setSection(CmQuizSection section) {
+    public void setSection(CmCourseQuizSection section) {
         this.section = section;
     }
 
-    public List<CmAnswer> getAnswers() {
+    public List<CmCourseAnswer> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(List<CmAnswer> answers) {
+    public void setAnswers(List<CmCourseAnswer> answers) {
         this.answers = answers;
     }
 

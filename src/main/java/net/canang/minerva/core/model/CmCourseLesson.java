@@ -1,18 +1,20 @@
 package net.canang.minerva.core.model;
 
-import java.util.List;
-
 /**
  * @author rafizan.baharum
  * @since 7/10/13
  */
-public interface CmCourse extends CmMetaObject {
+public interface CmCourseLesson extends CmMetaObject {
 
     String getName();
+
+    String getTitle();
 
     String getDescription();
 
     String getKeywords();
+
+    Integer getOrder();
 
     CmDifficulty getDifficulty();
 
@@ -20,9 +22,4 @@ public interface CmCourse extends CmMetaObject {
 
     CmInteractivityLevel getInteractivityLevel();
 
-    CmDepartment getDepartment();
-
-    List<CmCourseModule> getModules();
-
-    List<CmCourseAsset> getAssets();
 }

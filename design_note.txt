@@ -6,13 +6,9 @@ UPDATE
 DELETE
 
 
-
-User
-UserRole.USER
-UserRole.STUDENT
-UserRole.LECTURER
-UserRole.ASSISTANT
-UserRole.ADMINISTRATOR
+PrincipalRole.GUEST
+PrincipalRole.USER
+PrincipalRole.ADMINISTRATOR
 
 Module
 SubModule
@@ -114,6 +110,42 @@ Grade
 - StudentGrades
 
 
-
 http://academia.edu/1089600/Design_and_Implementation_of_Learning_Object_Ontology_for_E-learning_Personalization
+
+
+=================================================
+TEMPLATE
+=================================================
+Catalog
+    Faculty
+        Course
+            CourseModule
+            CourseLesson
+                CourseQuiz
+                    CourseQuizSection
+                        CourseQuestion
+                        CourseAnswers
+            CourseTest
+            CourseExamination
+            CourseDiscussion
+            CourseAssets
+=================================================
+
+
+=================================================
+INSTANCE
+=================================================
+Session
+        CourseSession
+            CourseSessionModule
+            CourseSessionLesson
+                CourseSessionQuiz
+                    CourseSessionQuizSection
+                        CourseSessionQuestion
+                        CourseSessionAnswers
+            CourseSessionTest
+            CourseSessionExamination
+            CourseSessionDiscussion
+            CourseSessionAssets
+=================================================
 

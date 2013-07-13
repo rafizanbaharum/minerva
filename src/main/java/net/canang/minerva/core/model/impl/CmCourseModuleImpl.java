@@ -3,19 +3,20 @@ package net.canang.minerva.core.model.impl;
 import net.canang.minerva.core.model.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author rafizan.baharum
  * @since 7/11/13
  */
-@Table(name = "CM_LSSN")
-@Entity(name = "CmLesson")
-public class CmLessonImpl implements CmLesson {
+@Table(name = "CM_CORS_SESN_MODL")
+@Entity(name = "CmCourseSessionModule")
+public class CmCourseModuleImpl implements CmCourseModule {
 
     @Id
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(generator = "SEQ_CM_LSSN")
-    @SequenceGenerator(name = "SEQ_CM_LSSN", sequenceName = "SEQ_CM_LSSN", allocationSize = 1)
+    @GeneratedValue(generator = "SEQ_CM_CORS_SESN_MODL")
+    @SequenceGenerator(name = "SEQ_CM_CORS_SESN_MODL", sequenceName = "SEQ_CM_CORS_SESN_MODL", allocationSize = 1)
     private Long id;
 
     @Column(name = "NAME")
@@ -33,17 +34,15 @@ public class CmLessonImpl implements CmLesson {
     @Column(name = "ORDR")
     private Integer order;
 
-    @Enumerated(value = EnumType.ORDINAL)
-    @Column(name = "DIFFICULTY")
-    private CmDifficulty difficulty;
+    @OneToOne(targetEntity = CmCourseImpl.class)
+    @JoinColumn(name = "COURSE_ID")
+    private CmCourse course;
 
-    @Enumerated(value = EnumType.ORDINAL)
-    @Column(name = "INTERACTIVITY_TYPE")
-    private CmInteractivityType interactivityType;
+    @OneToMany(targetEntity = CmCourseLessonImpl.class, mappedBy = "module")
+    private List<CmCourseLesson> lessons;
 
-    @Enumerated(value = EnumType.ORDINAL)
-    @Column(name = "INTERACTIVITY_LEVEL")
-    private CmInteractivityLevel interactivityLevel;
+    @OneToMany(targetEntity = CmCourseQuizImpl.class, mappedBy = "module")
+    private List<CmCourseQuiz> quizzes;
 
     @Embedded
     private CmMetadata metadata;
@@ -96,28 +95,28 @@ public class CmLessonImpl implements CmLesson {
         this.order = order;
     }
 
-    public CmDifficulty getDifficulty() {
-        return difficulty;
+    public CmCourse getCourse() {
+        return course;
     }
 
-    public void setDifficulty(CmDifficulty difficulty) {
-        this.difficulty = difficulty;
+    public void setCourse(CmCourse course) {
+        this.course = course;
     }
 
-    public CmInteractivityType getInteractivityType() {
-        return interactivityType;
+    public List<CmCourseLesson> getLessons() {
+        return lessons;
     }
 
-    public void setInteractivityType(CmInteractivityType interactivityType) {
-        this.interactivityType = interactivityType;
+    public void setLessons(List<CmCourseLesson> lessons) {
+        this.lessons = lessons;
     }
 
-    public CmInteractivityLevel getInteractivityLevel() {
-        return interactivityLevel;
+    public List<CmCourseQuiz> getQuizzes() {
+        return quizzes;
     }
 
-    public void setInteractivityLevel(CmInteractivityLevel interactivityLevel) {
-        this.interactivityLevel = interactivityLevel;
+    public void setQuizzes(List<CmCourseQuiz> quizzes) {
+        this.quizzes = quizzes;
     }
 
     public CmMetadata getMetadata() {

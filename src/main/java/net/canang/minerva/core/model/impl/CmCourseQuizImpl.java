@@ -1,7 +1,7 @@
 package net.canang.minerva.core.model.impl;
 
-import net.canang.minerva.core.model.CmQuiz;
-import net.canang.minerva.core.model.CmQuizSection;
+import net.canang.minerva.core.model.CmCourseQuiz;
+import net.canang.minerva.core.model.CmCourseQuizSection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Table(name = "CM_QUIZ")
 @Entity(name = "CmQuiz")
-public class CmQuizImpl extends CmAssessmentImpl implements CmQuiz {
+public class CmCourseQuizImpl extends CmAssessmentImpl implements CmCourseQuiz {
 
     @Column(name = "TITLE")
     private String title;
@@ -23,8 +23,8 @@ public class CmQuizImpl extends CmAssessmentImpl implements CmQuiz {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @OneToMany(targetEntity = CmQuizSectionImpl.class, mappedBy = "quiz")
-    private List<CmQuizSection> sections;
+    @OneToMany(targetEntity = CmCourseQuizSectionImpl.class, mappedBy = "quiz")
+    private List<CmCourseQuizSection> sections;
 
     public String getTitle() {
         return title;
@@ -42,11 +42,11 @@ public class CmQuizImpl extends CmAssessmentImpl implements CmQuiz {
         this.description = description;
     }
 
-    public List<CmQuizSection> getSections() {
+    public List<CmCourseQuizSection> getSections() {
         return sections;
     }
 
-    public void setSections(List<CmQuizSection> sections) {
+    public void setSections(List<CmCourseQuizSection> sections) {
         this.sections = sections;
     }
 }

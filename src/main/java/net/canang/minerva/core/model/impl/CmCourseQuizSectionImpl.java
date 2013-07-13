@@ -1,9 +1,9 @@
 package net.canang.minerva.core.model.impl;
 
+import net.canang.minerva.core.model.CmCourseQuestion;
+import net.canang.minerva.core.model.CmCourseQuizSection;
 import net.canang.minerva.core.model.CmMetadata;
-import net.canang.minerva.core.model.CmQuestion;
-import net.canang.minerva.core.model.CmQuiz;
-import net.canang.minerva.core.model.CmQuizSection;
+import net.canang.minerva.core.model.CmCourseQuiz;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,14 +12,14 @@ import java.util.List;
  * @author rafizan.baharum
  * @since 7/10/13
  */
-@Table(name = "CM_QUIZ_SCTN")
-@Entity(name = "CmQuizSection")
-public class CmQuizSectionImpl implements CmQuizSection {
+@Table(name = "CM_CORS_QUIZ_SCTN")
+@Entity(name = "CmCourseQuizSection")
+public class CmCourseQuizSectionImpl implements CmCourseQuizSection {
 
     @Id
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(generator = "SEQ_CM_SCTN")
-    @SequenceGenerator(name = "SEQ_CM_SCTN", sequenceName = "SEQ_CM_SCTN", allocationSize = 1)
+    @GeneratedValue(generator = "SEQ_CM_CORS_QUIZ_SCTN")
+    @SequenceGenerator(name = "SEQ_CM_CORS_QUIZ_SCTN", sequenceName = "SEQ_CM_CORS_QUIZ_SCTN", allocationSize = 1)
     private Long id;
 
     @Column(name = "TITLE")
@@ -28,12 +28,12 @@ public class CmQuizSectionImpl implements CmQuizSection {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @OneToOne(targetEntity = CmQuizImpl.class)
+    @OneToOne(targetEntity = CmCourseQuizImpl.class)
     @JoinColumn(name = "QUIZ_ID")
-    private CmQuiz quiz;
+    private CmCourseQuiz quiz;
 
-    @OneToMany(targetEntity = CmQuestionImpl.class, mappedBy = "section")
-    private List<CmQuestion> questions;
+    @OneToMany(targetEntity = CmCourseQuestionImpl.class, mappedBy = "section")
+    private List<CmCourseQuestion> questions;
 
     @Embedded
     private CmMetadata metadata;
@@ -62,19 +62,19 @@ public class CmQuizSectionImpl implements CmQuizSection {
         this.description = description;
     }
 
-    public List<CmQuestion> getQuestions() {
+    public List<CmCourseQuestion> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<CmQuestion> questions) {
+    public void setQuestions(List<CmCourseQuestion> questions) {
         this.questions = questions;
     }
 
-    public CmQuiz getQuiz() {
+    public CmCourseQuiz getQuiz() {
         return quiz;
     }
 
-    public void setQuiz(CmQuiz quiz) {
+    public void setQuiz(CmCourseQuiz quiz) {
         this.quiz = quiz;
     }
 
