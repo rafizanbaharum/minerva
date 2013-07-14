@@ -6,4 +6,6 @@ package net.canang.minerva.core.model;
  */
 public enum CmInteractivityType {
 
+    A,
+    B;
 }

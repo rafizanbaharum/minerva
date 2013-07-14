@@ -10,7 +10,13 @@ public interface CmCourseQuizSection extends CmMetaObject{
 
     String getTitle();
 
+    void setTitle(String title);
+
     String getDescription();
 
+    void setDescription(String description);
+
     List<CmCourseQuestion> getQuestions();
+
+    void setQuestions(List<CmCourseQuestion> questions);
 }

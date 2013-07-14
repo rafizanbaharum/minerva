@@ -3,6 +3,7 @@ package net.canang.minerva.core.model.impl;
 import net.canang.minerva.core.model.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author rafizan.baharum
@@ -44,6 +45,13 @@ public class CmCourseLessonImpl implements CmCourseLesson {
     @Enumerated(value = EnumType.ORDINAL)
     @Column(name = "INTERACTIVITY_LEVEL")
     private CmInteractivityLevel interactivityLevel;
+
+    @OneToOne(targetEntity = CmCourseModuleImpl.class)
+    @JoinColumn(name = "MODULE_ID")
+    private CmCourseModule module;
+
+    @OneToMany(targetEntity = CmCourseContentImpl.class, mappedBy = "lesson")
+    private List<CmCourseContent> contents;
 
     @Embedded
     private CmMetadata metadata;
@@ -118,6 +126,22 @@ public class CmCourseLessonImpl implements CmCourseLesson {
 
     public void setInteractivityLevel(CmInteractivityLevel interactivityLevel) {
         this.interactivityLevel = interactivityLevel;
+    }
+
+    public CmCourseModule getModule() {
+        return module;
+    }
+
+    public void setModule(CmCourseModule module) {
+        this.module = module;
+    }
+
+    public List<CmCourseContent> getContents() {
+        return contents;
+    }
+
+    public void setContents(List<CmCourseContent> contents) {
+        this.contents = contents;
     }
 
     public CmMetadata getMetadata() {

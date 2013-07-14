@@ -1,12 +1,10 @@
 package net.canang.minerva.core.model.impl;
 
+import net.canang.minerva.core.model.CmCourseModule;
 import net.canang.minerva.core.model.CmCourseQuiz;
 import net.canang.minerva.core.model.CmCourseQuizSection;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -22,6 +20,10 @@ public class CmCourseQuizImpl extends CmAssessmentImpl implements CmCourseQuiz {
 
     @Column(name = "DESCRIPTION")
     private String description;
+
+    @OneToOne(targetEntity = CmCourseModuleImpl.class)
+    @JoinColumn(name = "MODULE_ID")
+    private CmCourseModule module;
 
     @OneToMany(targetEntity = CmCourseQuizSectionImpl.class, mappedBy = "quiz")
     private List<CmCourseQuizSection> sections;
@@ -40,6 +42,14 @@ public class CmCourseQuizImpl extends CmAssessmentImpl implements CmCourseQuiz {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public CmCourseModule getModule() {
+        return module;
+    }
+
+    public void setModule(CmCourseModule module) {
+        this.module = module;
     }
 
     public List<CmCourseQuizSection> getSections() {

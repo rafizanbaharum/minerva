@@ -1,5 +1,7 @@
-package net.canang.minerva.biz;
+package net.canang.minerva.biz.impl;
 
+import net.canang.minerva.biz.AccessManager;
+import net.canang.minerva.biz.ManagerSupport;
 import net.canang.minerva.biz.integration.CmAclDao;
 import net.canang.minerva.biz.integration.CmPermission;
 import net.canang.minerva.biz.integration.CmRecord;
@@ -8,6 +10,7 @@ import org.activiti.engine.TaskService;
 import org.activiti.engine.task.IdentityLink;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -16,6 +19,7 @@ import java.util.List;
  * @author rafizan.baharum
  * @since 7/11/13
  */
+@Transactional
 public class AccessManagerImpl extends ManagerSupport implements AccessManager {
 
     @Autowired

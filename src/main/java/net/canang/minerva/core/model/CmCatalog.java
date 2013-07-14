@@ -6,6 +6,8 @@ package net.canang.minerva.core.model;
  */
 public interface CmCatalog {
 
-     CmFaculty getFaculty();
+    CmFaculty getFaculty();
+
+    void setFaculty(CmFaculty faculty);
 
 }

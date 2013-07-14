@@ -10,7 +10,17 @@ public interface CmCourseQuiz extends CmAssessment, CmShareable {
 
     String getTitle();
 
+    void setTitle(String title);
+
     String getDescription();
 
+    void setDescription(String description);
+
+    CmCourseModule getModule();
+
+    void setModule(CmCourseModule module);
+
     List<CmCourseQuizSection> getSections();
+
+    void setSections(List<CmCourseQuizSection> sections);
 }

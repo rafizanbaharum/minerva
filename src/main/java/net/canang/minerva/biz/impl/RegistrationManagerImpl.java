@@ -1,5 +1,8 @@
-package net.canang.minerva.biz;
+package net.canang.minerva.biz.impl;
 
+import net.canang.minerva.biz.ManagerSupport;
+import net.canang.minerva.biz.RegistrationManager;
+import net.canang.minerva.biz.WorkflowManager;
 import net.canang.minerva.core.model.CmCourseRegistration;
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -1,4 +1,4 @@
-package net.canang.minerva.core;
+package net.canang.minerva.web.config;
 
 import net.canang.minerva.biz.integration.CmUserDetailsService;
 import org.apache.commons.dbcp.BasicDataSource;
@@ -18,6 +18,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -28,10 +30,11 @@ import java.util.Properties;
  * @since 5/26/13
  */
 @Configuration
-@ComponentScan({"net.canang.minerva.core", "net.canang.minerva.biz"})
+@ComponentScan({"net.canang.minerva.core", "net.canang.minerva.biz", "net.canang.minerva.web"})
 @PropertySource("classpath:app.properties")
 @EnableTransactionManagement
-public class CmTestConfig {
+@EnableWebMvc
+public class CmWebApplicationConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
     private Environment environment;
@@ -56,7 +59,7 @@ public class CmTestConfig {
         properties.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
         properties.put("hibernate.show_sql", "false");
         properties.put("hibernate.hbm2ddl.auto", "update");
-        properties.put("hibernate.format_sql", "false");
+        properties.put("hibernate.format_sql", "true");
         properties.put("javax.persistence.validation.mode", "none");
 
         //properties.put("hibernate.connection.pool_size", "1");

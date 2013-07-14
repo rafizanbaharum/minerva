@@ -117,18 +117,41 @@ http://academia.edu/1089600/Design_and_Implementation_of_Learning_Object_Ontolog
 TEMPLATE
 =================================================
 Catalog
-    Faculty
-        Course
+    Program (faculty/department)
+        Course                 (required/optional  core/elective)
             CourseModule
-            CourseLesson
+                CourseLesson
+                    CourseContent
                 CourseQuiz
                     CourseQuizSection
                         CourseQuestion
                         CourseAnswers
+                CourseModuleTopic
             CourseTest
             CourseExamination
-            CourseDiscussion
             CourseAssets
+
+        Android Programming
+            Android Service
+                Android Services
+                   Xxx
+                Defining Services
+                Broadcast Receiver
+                Starting Services
+                Communicating Services
+            Android Background Processing
+                Adroid UI Thread
+                Android Basics
+                Java Thread in Android
+                Concurrency in Android
+                Handler
+                AsyncTask
+
+        Asset1
+        Asset2
+        Asset3
+        Asset...
+
 =================================================
 
 
@@ -138,14 +161,42 @@ INSTANCE
 Session
         CourseSession
             CourseSessionModule
-            CourseSessionLesson
-                CourseSessionQuiz
-                    CourseSessionQuizSection
-                        CourseSessionQuestion
-                        CourseSessionAnswers
+                CourseSessionLesson
+                    CourseSessionQuiz
+                        CourseSessionQuizSection
+                            CourseSessionQuestion
+                            CourseSessionAnswers
+                            CourseSessionResponse
             CourseSessionTest
             CourseSessionExamination
             CourseSessionDiscussion
             CourseSessionAssets
 =================================================
+
+Assessment
+ ModuleAssessment
+    ModuleDiscussion
+ CourseAssessment
+ Curated Topic
+
+=================================================
+
+Category/Band/Track
+When optional complexities goes up
+
+System Module: Learning History
+StudentProgramRequirement vs StudentProgramFulfillment
+
+
+MVP
+============================
+boleh author content
+boleh copy content template
+boleh do analytics on module down to per question
+boleh do analytics on student per module
+
+
+
+
+
 

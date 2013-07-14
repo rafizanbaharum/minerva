@@ -8,5 +8,9 @@ public interface CmCourseEnrollment {
 
     CmCourseSession getSession();
 
+    void setSession(CmCourseSession session);
+
     CmStudent getStudent();
+
+    void setStudent(CmStudent student);
 }

@@ -10,17 +10,33 @@ public interface CmCourseSessionModule extends CmMetaObject {
 
     String getName();
 
+    void setName(String name);
+
     String getTitle();
+
+    void setTitle(String title);
 
     String getDescription();
 
+    void setDescription(String description);
+
     String getKeywords();
+
+    void setKeywords(String keywords);
 
     Integer getOrder();
 
+    void setOrder(Integer order);
+
     CmCourseSession getCourse();
+
+    void setCourse(CmCourseSession course);
 
     List<CmCourseSessionLesson> getLessons();
 
+    void setLessons(List<CmCourseSessionLesson> lessons);
+
     List<CmCourseSessionQuiz> getQuizzes();
+
+    void setQuizzes(List<CmCourseSessionQuiz> quizzes);
 }

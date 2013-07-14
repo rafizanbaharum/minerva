@@ -8,4 +8,5 @@ public interface CmCourseSessionMessage extends CmMetaObject{
 
     CmCourseSessionDiscussion getDiscussion();
 
+    void setDiscusssion(CmCourseSessionDiscussion discusssion);
 }

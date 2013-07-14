@@ -10,4 +10,6 @@ public interface CmCourseSessionDiscussion extends CmMetaObject{
 
     List<CmCourseSessionMessage> getMessages();
 
+    void setMessages(List<CmCourseSessionMessage> messages);
+
 }

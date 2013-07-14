@@ -8,11 +8,21 @@ public interface CmCourseAsset extends CmMetaObject {
 
     String getName();
 
+    void setName(String name);
+
     String getTitle();
+
+    void setTitle(String title);
 
     String getDescription();
 
+    void setDescription(String description);
+
     String getKeywords();
 
+    void setKeywords(String keywords);
+
     String getPath();
+
+    void setPath(String path);
 }

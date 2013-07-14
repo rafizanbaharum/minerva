@@ -8,6 +8,10 @@ public interface CmDocument extends CmFlowObject {
 
     String getReferenceNo();
 
+    void setReferenceNo(String referenceNo);
+
     String getSourceNo();
+
+    void setSourceNo(String sourceNo);
 
 }

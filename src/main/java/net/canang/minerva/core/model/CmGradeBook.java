@@ -10,6 +10,10 @@ public interface CmGradebook extends CmMetaObject {
 
     CmCourseSession getCourse();
 
+    void setCourse(CmCourseSession course);
+
     List<CmGrade> getGrades();
+
+    void setGrades(List<CmGrade> grades);
 
 }

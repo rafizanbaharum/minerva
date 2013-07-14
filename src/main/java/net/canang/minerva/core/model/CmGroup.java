@@ -10,4 +10,6 @@ public interface CmGroup extends CmPrincipal {
 
     Set<CmGroupMember> getMembers();
 
+    void setMembers(Set<CmGroupMember> members);
+
 }

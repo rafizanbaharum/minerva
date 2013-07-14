@@ -1,5 +1,7 @@
-package net.canang.minerva.biz;
+package net.canang.minerva.biz.impl;
 
+import net.canang.minerva.biz.ManagerSupport;
+import net.canang.minerva.biz.WorkflowManager;
 import net.canang.minerva.core.dao.CmGroupDao;
 import net.canang.minerva.core.model.CmGroup;
 import net.canang.minerva.core.model.CmUser;

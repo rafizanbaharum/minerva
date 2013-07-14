@@ -1,9 +1,10 @@
 package net.canang.minerva.core;
 
+import net.canang.minerva.core.config.CmCoreConfig;
 import net.canang.minerva.core.dao.CmCourseSessionDao;
 import net.canang.minerva.core.dao.CmUserDao;
 import net.canang.minerva.core.model.CmCourseSession;
-import net.canang.minerva.core.model.CmCourseSessionImpl;
+import net.canang.minerva.core.model.impl.CmCourseSessionImpl;
 import net.canang.minerva.core.model.CmUser;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
@@ -19,7 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @since 7/11/13
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {CmTestConfig.class})
+@ContextConfiguration(classes = {CmCoreConfig.class})
 public class CmCourseSessionDaoTest {
 
     private Logger log = LoggerFactory.getLogger(CmCourseSessionDaoTest.class);

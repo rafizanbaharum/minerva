@@ -22,6 +22,7 @@ public class CmCourseQuestionImpl implements CmCourseQuestion {
     @Column(name = "TITLE")
     private String title;
 
+    @Lob
     @Column(name = "BODY")
     private String body;
 

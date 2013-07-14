@@ -19,6 +19,9 @@ public class CmCourseImpl implements CmCourse {
     @SequenceGenerator(name = "SEQ_CM_CORS", sequenceName = "SEQ_CM_CORS", allocationSize = 1)
     private Long id;
 
+    @Column(name = "CODE")
+    private String code;
+
     @Column(name = "NAME")
     private String name;
 
@@ -47,7 +50,7 @@ public class CmCourseImpl implements CmCourse {
     @OneToMany(targetEntity = CmCourseAssetImpl.class, mappedBy = "course")
     private List<CmCourseAsset> assets;
 
-    @OneToMany(targetEntity = CmCourseSessionAnswerImpl.class, mappedBy = "course")
+    @OneToMany(targetEntity = CmCourseModuleImpl.class, mappedBy = "course")
     private List<CmCourseModule> modules;
 
     @Embedded
@@ -59,6 +62,14 @@ public class CmCourseImpl implements CmCourse {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {

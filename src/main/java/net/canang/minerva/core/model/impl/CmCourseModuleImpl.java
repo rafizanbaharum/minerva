@@ -9,14 +9,14 @@ import java.util.List;
  * @author rafizan.baharum
  * @since 7/11/13
  */
-@Table(name = "CM_CORS_SESN_MODL")
-@Entity(name = "CmCourseSessionModule")
+@Table(name = "CM_CORS_MODL")
+@Entity(name = "CmCourseModule")
 public class CmCourseModuleImpl implements CmCourseModule {
 
     @Id
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(generator = "SEQ_CM_CORS_SESN_MODL")
-    @SequenceGenerator(name = "SEQ_CM_CORS_SESN_MODL", sequenceName = "SEQ_CM_CORS_SESN_MODL", allocationSize = 1)
+    @GeneratedValue(generator = "SEQ_CM_CORS_MODL")
+    @SequenceGenerator(name = "SEQ_CM_CORS_MODL", sequenceName = "SEQ_CM_CORS_MODL", allocationSize = 1)
     private Long id;
 
     @Column(name = "NAME")
