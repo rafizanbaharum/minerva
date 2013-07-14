@@ -1,4 +1,4 @@
-package net.canang.minerva.core.config;
+package net.canang.minerva.biz.config;
 
 import net.canang.minerva.biz.integration.springsecurity.CmUserDetailsService;
 import org.apache.commons.dbcp.BasicDataSource;
@@ -31,7 +31,7 @@ import java.util.Properties;
 @ComponentScan({"net.canang.minerva.core", "net.canang.minerva.biz"})
 @PropertySource("classpath:app.properties")
 @EnableTransactionManagement
-public class CmCoreConfig {
+public class CmBizConfig {
 
     @Autowired
     private Environment environment;

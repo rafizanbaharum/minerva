@@ -1,6 +1,6 @@
 package net.canang.minerva.biz;
 
-import net.canang.minerva.biz.integration.CmRecord;
+import net.canang.minerva.biz.integration.springacl.CmRecord;
 import net.canang.minerva.core.model.CmFlowState;
 
 import java.util.Date;

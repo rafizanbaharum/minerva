@@ -16,6 +16,10 @@ public interface CmCourseQuestion extends CmShareable, CmMetaObject {
 
     void setBody(String body);
 
+    CmCourseQuizSection getSection();
+
+    void setSection(CmCourseQuizSection section);
+
     List<CmCourseAnswer> getAnswers();
 
     void setAnswers(List<CmCourseAnswer> answers);

@@ -88,6 +88,14 @@ public class CmCourseAssetImpl implements CmCourseAsset {
         this.path = path;
     }
 
+    public CmCourse getCourse() {
+        return course;
+    }
+
+    public void setCourse(CmCourse course) {
+        this.course = course;
+    }
+
     public CmMetadata getMetadata() {
         return metadata;
     }

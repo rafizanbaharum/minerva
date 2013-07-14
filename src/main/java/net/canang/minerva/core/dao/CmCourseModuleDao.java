@@ -1,8 +1,6 @@
 package net.canang.minerva.core.dao;
 
-import net.canang.minerva.core.model.CmCourseLesson;
-import net.canang.minerva.core.model.CmCourseModule;
-import net.canang.minerva.core.model.CmUser;
+import net.canang.minerva.core.model.*;
 
 import java.util.List;
 
@@ -39,5 +37,37 @@ public interface CmCourseModuleDao {
     void addLesson(CmCourseModule module, CmCourseLesson lesson, CmUser user);
 
     void addLessons(CmCourseModule module, List<CmCourseLesson> lesson, CmUser user);
+
+    void updateLesson(CmCourseModule module, CmCourseLesson lesson, CmUser user);
+
+    void updateLessons(CmCourseModule module, List<CmCourseLesson> lesson, CmUser user);
+
+    void removeLesson(CmCourseModule module, CmCourseLesson lesson, CmUser user);
+
+    void removeLessons(CmCourseModule module, List<CmCourseLesson> lesson, CmUser user);
+
+    void addQuiz(CmCourseModule module, CmCourseQuiz quiz, CmUser user);
+
+    void addQuizzes(CmCourseModule module, List<CmCourseQuiz> quiz, CmUser user);
+
+    void updateQuiz(CmCourseModule module, CmCourseQuiz quiz, CmUser user);
+
+    void updateQuizzes(CmCourseModule module, List<CmCourseQuiz> quiz, CmUser user);
+
+    void removeQuiz(CmCourseModule module, CmCourseQuiz quiz, CmUser user);
+
+    void removeQuizzes(CmCourseModule module, List<CmCourseQuiz> quiz, CmUser user);
+
+    void addContent(CmCourseLesson lesson, CmCourseContent content, CmUser user);
+
+    void addContents(CmCourseLesson lesson, List<CmCourseContent> content, CmUser user);
+
+    void updateContent(CmCourseLesson lesson, CmCourseContent content, CmUser user);
+
+    void updateContents(CmCourseLesson lesson, List<CmCourseContent> content, CmUser user);
+
+    void removeContent(CmCourseLesson lesson, CmCourseContent content, CmUser user);
+
+    void removeContents(CmCourseLesson lesson, List<CmCourseContent> content, CmUser user);
 
 }

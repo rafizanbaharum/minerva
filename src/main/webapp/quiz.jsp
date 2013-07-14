@@ -16,10 +16,10 @@
         <th>Code</th>
         <th>Name</th>
     </tr>
-    <c:forEach var="quiz" items="${courses}">
+    <c:forEach var="quiz" items="${quizzes}">
         <tr>
-            <td>${quiz.code}</td>
-            <td>${quiz.name}</td>
+            <td>${quiz.title}</td>
+            <td>${quiz.module.course.name}</td>
         </tr>
     </c:forEach>
 </table>

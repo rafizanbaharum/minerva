@@ -8,12 +8,6 @@ import java.util.List;
  */
 public interface CmCourseLesson extends CmMetaObject {
 
-    @Deprecated
-    String getName();
-
-    @Deprecated
-    void setName(String name);
-
     String getTitle();
 
     void setTitle(String title);

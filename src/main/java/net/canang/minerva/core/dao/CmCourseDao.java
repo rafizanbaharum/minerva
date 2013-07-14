@@ -1,9 +1,6 @@
 package net.canang.minerva.core.dao;
 
-import net.canang.minerva.core.model.CmCourse;
-import net.canang.minerva.core.model.CmCourseModule;
-import net.canang.minerva.core.model.CmFaculty;
-import net.canang.minerva.core.model.CmUser;
+import net.canang.minerva.core.model.*;
 
 import java.util.List;
 
@@ -42,5 +39,9 @@ public interface CmCourseDao {
     void addModule(CmCourse course, CmCourseModule module, CmUser user);
 
     void addModules(CmCourse course, List<CmCourseModule> modules, CmUser user);
+
+    void addAsset(CmCourse course, CmCourseAsset asset, CmUser user);
+
+    void addAssets(CmCourse course, List<CmCourseAsset> assets, CmUser user);
 
 }

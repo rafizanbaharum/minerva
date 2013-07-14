@@ -1,4 +1,4 @@
-package net.canang.minerva.biz.integration;
+package net.canang.minerva.biz.integration.springacl;
 
 import org.springframework.security.acls.domain.AbstractPermission;
 

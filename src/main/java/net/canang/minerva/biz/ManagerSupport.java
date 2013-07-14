@@ -3,7 +3,7 @@ package net.canang.minerva.biz;
 import net.canang.minerva.biz.event.AccessEvent;
 import net.canang.minerva.biz.event.EmailEvent;
 import net.canang.minerva.biz.event.ProcessEvent;
-import net.canang.minerva.biz.integration.CmPermission;
+import net.canang.minerva.biz.integration.springacl.CmPermission;
 import net.canang.minerva.core.model.CmFlowObject;
 import net.canang.minerva.core.model.CmMetaObject;
 import net.canang.minerva.core.model.CmPrincipal;

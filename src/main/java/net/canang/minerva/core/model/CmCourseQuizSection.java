@@ -6,7 +6,7 @@ import java.util.List;
  * @author rafizan.baharum
  * @since 7/10/13
  */
-public interface CmCourseQuizSection extends CmMetaObject{
+public interface CmCourseQuizSection extends CmMetaObject {
 
     String getTitle();
 
@@ -15,6 +15,10 @@ public interface CmCourseQuizSection extends CmMetaObject{
     String getDescription();
 
     void setDescription(String description);
+
+    CmCourseQuiz getQuiz();
+
+    void setQuiz(CmCourseQuiz quiz);
 
     List<CmCourseQuestion> getQuestions();
 

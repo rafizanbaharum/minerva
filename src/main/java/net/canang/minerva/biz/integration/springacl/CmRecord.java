@@ -1,4 +1,4 @@
-package net.canang.minerva.biz.integration;
+package net.canang.minerva.biz.integration.springacl;
 
 /**
  * @author rafizan.baharum

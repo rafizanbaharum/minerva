@@ -4,7 +4,6 @@ import net.canang.minerva.core.config.CmCoreConfig;
 import net.canang.minerva.core.dao.*;
 import net.canang.minerva.core.model.*;
 import net.canang.minerva.core.model.impl.*;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,9 +27,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {CmCoreConfig.class})
-public class CmCourseDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class CmCourseQuizDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    private Logger log = LoggerFactory.getLogger(CmCourseDaoTest.class);
+    private Logger log = LoggerFactory.getLogger(CmCourseQuizDaoTest.class);
 
     @Autowired
     private CmUserDao userDao;
@@ -48,6 +47,9 @@ public class CmCourseDaoTest extends AbstractTransactionalJUnit4SpringContextTes
     private CmCourseModuleDao moduleDao;
 
     @Autowired
+    private CmCourseQuizDao quizDao;
+
+    @Autowired
     private SessionFactory sessionFactory;
 
     @Autowired
@@ -59,6 +61,7 @@ public class CmCourseDaoTest extends AbstractTransactionalJUnit4SpringContextTes
     public void setUp() {
         log.debug("logging in user");
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken("root", "abc123");
+
         Authentication authed = authenticationManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authed);
 
@@ -99,11 +102,10 @@ public class CmCourseDaoTest extends AbstractTransactionalJUnit4SpringContextTes
         sessionFactory.getCurrentSession().refresh(department);
 
         // create our module
-        createModule1(course);
+        createQuiz(course);
     }
 
-    private void createModule1(CmCourse course) {
-
+    private void createQuiz(CmCourse course) {
         log.debug("module");
         CmCourseModule module1 = new CmCourseModuleImpl();
         module1.setName("Android Service");
@@ -116,64 +118,28 @@ public class CmCourseDaoTest extends AbstractTransactionalJUnit4SpringContextTes
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().refresh(module1);
 
-        log.debug("lesson");
-        CmCourseLesson lesson1 = new CmCourseLessonImpl();
-        lesson1.setTitle("1. Android Services");
-        lesson1.setDescription("Android Services");
-        lesson1.setKeywords("Platform, Service, Defining");
-        lesson1.setOrder(1);
-        lesson1.setInteractivityType(CmInteractivityType.A);
-        lesson1.setInteractivityLevel(CmInteractivityLevel.B);
-        lesson1.setDifficulty(CmDifficulty.EASY);
-        moduleDao.addLesson(module1, lesson1, root);
+        log.debug("quiz");
+        CmCourseQuiz quiz1 = new CmCourseQuizImpl();
+        quiz1.setTitle("Quiz 1");
+        quiz1.setDescription("Quiz 1");
+        quiz1.setModule(module1);
+        moduleDao.addQuiz(module1, quiz1, root);
         sessionFactory.getCurrentSession().flush();
-        sessionFactory.getCurrentSession().refresh(lesson1);
+        sessionFactory.getCurrentSession().refresh(quiz1);
 
-        log.debug("content1");
-        CmCourseContent content1_1 = new CmCourseContentImpl();
-        content1_1.setTitle("1.1 Title");
-        content1_1.setBody("this is a test");
-        content1_1.setLesson(lesson1);
-        moduleDao.addContent(lesson1, content1_1, root);
+        CmCourseQuizSection section1 = new CmCourseQuizSectionImpl();
+        section1.setTitle("1.1 Section 1");
+        section1.setDescription("Section 1");
+        quizDao.addSection(quiz1, section1, root);
         sessionFactory.getCurrentSession().flush();
-        sessionFactory.getCurrentSession().refresh(content1_1);
+        sessionFactory.getCurrentSession().refresh(section1);
 
-        log.debug("content1");
-        CmCourseContent content1_2 = new CmCourseContentImpl();
-        content1_2.setTitle("1.2 Title");
-        content1_2.setBody("this is a test");
-        content1_2.setLesson(lesson1);
-        moduleDao.addContent(lesson1, content1_2, root);
+        CmCourseQuestion question1_1 = new CmCourseQuestionImpl();
+        question1_1.setTitle("Title");
+        question1_1.setBody("Question Body");
+        quizDao.addQuestion(section1, question1_1, root);
         sessionFactory.getCurrentSession().flush();
-        sessionFactory.getCurrentSession().refresh(content1_2);
-
-        CmCourseLesson lesson2 = new CmCourseLessonImpl();
-        lesson2.setTitle("Android Services");
-        lesson2.setDescription("Android Services");
-        lesson2.setKeywords("Platform, Service, Defining");
-        lesson2.setOrder(1);
-        lesson2.setInteractivityType(CmInteractivityType.A);
-        lesson2.setInteractivityLevel(CmInteractivityLevel.B);
-        lesson2.setDifficulty(CmDifficulty.EASY);
-        moduleDao.addLesson(module1, lesson2, root);
-        sessionFactory.getCurrentSession().flush();
-        sessionFactory.getCurrentSession().refresh(lesson2);
-
-        CmCourseContent content2_1 = new CmCourseContentImpl();
-        content2_1.setTitle("2.1 Title");
-        content2_1.setBody("this is a test");
-        content2_1.setLesson(lesson1);
-        moduleDao.addContent(lesson2, content2_1, root);
-        sessionFactory.getCurrentSession().flush();
-        sessionFactory.getCurrentSession().refresh(content2_1);
-
-        CmCourseContent content2_2 = new CmCourseContentImpl();
-        content2_2.setTitle("2.2 Title");
-        content2_2.setBody("this is a test");
-        content2_2.setLesson(lesson1);
-        moduleDao.addContent(lesson2, content2_2, root);
-        sessionFactory.getCurrentSession().flush();
-        sessionFactory.getCurrentSession().refresh(content2_2);
+        sessionFactory.getCurrentSession().refresh(section1);
     }
 
 }

@@ -11,8 +11,8 @@ import java.util.List;
  * @author rafizan.baharum
  * @since 7/10/13
  */
-@Table(name = "CM_QUIZ")
-@Entity(name = "CmQuiz")
+@Table(name = "CM_CORS_QUIZ")
+@Entity(name = "CmCourseQuiz")
 public class CmCourseQuizImpl extends CmAssessmentImpl implements CmCourseQuiz {
 
     @Column(name = "TITLE")

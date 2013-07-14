@@ -2,9 +2,9 @@ package net.canang.minerva.biz.impl;
 
 import net.canang.minerva.biz.AccessManager;
 import net.canang.minerva.biz.ManagerSupport;
-import net.canang.minerva.biz.integration.CmAclDao;
-import net.canang.minerva.biz.integration.CmPermission;
-import net.canang.minerva.biz.integration.CmRecord;
+import net.canang.minerva.biz.integration.springacl.CmAclDao;
+import net.canang.minerva.biz.integration.springacl.CmPermission;
+import net.canang.minerva.biz.integration.springacl.CmRecord;
 import net.canang.minerva.core.model.CmFlowState;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.task.IdentityLink;

@@ -10,6 +10,7 @@ import java.util.List;
  * @author rafizan.baharum
  * @since 7/13/13
  */
+@Deprecated
 public interface CmCourseLessonDao {
 
     // finders

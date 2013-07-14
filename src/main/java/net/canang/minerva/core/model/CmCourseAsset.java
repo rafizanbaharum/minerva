@@ -25,4 +25,9 @@ public interface CmCourseAsset extends CmMetaObject {
     String getPath();
 
     void setPath(String path);
+
+    CmCourse getCourse();
+
+    void setCourse(CmCourse course);
+
 }

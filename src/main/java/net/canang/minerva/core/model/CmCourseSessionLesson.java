@@ -6,10 +6,6 @@ package net.canang.minerva.core.model;
  */
 public interface CmCourseSessionLesson extends CmMetaObject{
 
-    String getName();
-
-    void setName(String name);
-
     String getTitle();
 
     void setTitle(String title);

@@ -1,6 +1,6 @@
 package net.canang.minerva.web.config;
 
-import net.canang.minerva.biz.integration.CmUserDetailsService;
+import net.canang.minerva.biz.integration.springsecurity.CmUserDetailsService;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

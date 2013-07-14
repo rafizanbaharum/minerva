@@ -18,9 +18,6 @@ public class CmCourseSessionLessonImpl implements CmCourseSessionLesson {
     @SequenceGenerator(name = "SEQ_CM_CORS_SESN_LSSN", sequenceName = "SEQ_CM_CORS_SESN_LSSN", allocationSize = 1)
     private Long id;
 
-    @Column(name = "NAME")
-    private String name;
-
     @Column(name = "TITLE")
     private String title;
 
@@ -58,14 +55,6 @@ public class CmCourseSessionLessonImpl implements CmCourseSessionLesson {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getTitle() {

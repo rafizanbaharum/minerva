@@ -1,6 +1,6 @@
 package net.canang.minerva.biz.event;
 
-import net.canang.minerva.biz.integration.CmPermission;
+import net.canang.minerva.biz.integration.springacl.CmPermission;
 import net.canang.minerva.core.model.CmMetaObject;
 import net.canang.minerva.core.model.CmPrincipal;
 import org.springframework.context.ApplicationEvent;

@@ -1,4 +1,4 @@
-package net.canang.minerva.biz.integration;
+package net.canang.minerva.biz.integration.springsecurity;
 
 import net.canang.minerva.core.model.CmUser;
 import org.apache.log4j.Logger;
