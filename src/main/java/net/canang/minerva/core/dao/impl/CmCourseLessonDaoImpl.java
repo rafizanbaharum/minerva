@@ -89,10 +89,82 @@ public class CmCourseLessonDaoImpl extends DaoSupport<Long, CmCourseLesson, CmCo
         return ((Long) query.uniqueResult()).intValue();
     }
 
-    public void addContent(CmCourseLesson module, CmCourseContent content, CmUser user) {
+    @Override
+    public void addSection(CmCourseLesson lesson, CmCourseLessonSection section, CmUser user) {
+        Validate.notNull(user, "User cannot be null");
+
+        Session session = sessionFactory.getCurrentSession();
+        section.setLesson(lesson);
+
+        // prepare metadata
+        CmMetadata metadata = new CmMetadata();
+        metadata.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+        metadata.setCreator(user.getId());
+        metadata.setState(CmMetaState.ACTIVE);
+        section.setMetadata(metadata);
+        session.save(section);
+    }
+
+    @Override
+    public void updateSection(CmCourseLesson lesson, CmCourseLessonSection section, CmUser user) {
+        Validate.notNull(user, "User cannot be null");
+
+        Session session = sessionFactory.getCurrentSession();
+        section.setLesson(lesson);
+
+        // prepare metadata
+        CmMetadata metadata = section.getMetadata();
+        metadata.setModifiedDate(new Timestamp(System.currentTimeMillis()));
+        metadata.setModifier(user.getId());
+        section.setMetadata(metadata);
+        session.update(section);
+    }
+
+    @Override
+    public void removeSection(CmCourseLesson lesson, CmCourseLessonSection section, CmUser user) {
         Validate.notNull(user, "User cannot be null");
         Session session = sessionFactory.getCurrentSession();
-        content.setLesson(module);
+        section.setLesson(lesson);
+
+        // prepare metadata
+        CmMetadata metadata = section.getMetadata();
+        metadata.setModifiedDate(new Timestamp(System.currentTimeMillis()));
+        metadata.setModifier(user.getId());
+        metadata.setState(CmMetaState.INACTIVE);
+        section.setMetadata(metadata);
+        session.update(section);
+    }
+
+    @Override
+    public void addSections(CmCourseLesson lesson, List<CmCourseLessonSection> sections, CmUser user) {
+        Validate.notNull(user, "User cannot be null");
+        for (CmCourseLessonSection section : sections) {
+            addSection(lesson, section, user);
+        }
+    }
+
+    @Override
+    public void updateSections(CmCourseLesson course, List<CmCourseLessonSection> sections, CmUser user) {
+        Validate.notNull(user, "User cannot be null");
+        for (CmCourseLessonSection section : sections) {
+            updateSection(course, section, user);
+        }
+    }
+
+    @Override
+    public void removeSections(CmCourseLesson lesson, List<CmCourseLessonSection> sections, CmUser user) {
+        Validate.notNull(user, "User cannot be null");
+        for (CmCourseLessonSection section : sections) {
+            removeSection(lesson, section, user);
+        }
+    }
+
+    @Override
+    public void addContent(CmCourseLessonSection section, CmCourseLessonContent content, CmUser user) {
+        Validate.notNull(user, "User cannot be null");
+
+        Session session = sessionFactory.getCurrentSession();
+        content.setSection(section);
 
         // prepare metadata
         CmMetadata metadata = new CmMetadata();
@@ -103,10 +175,12 @@ public class CmCourseLessonDaoImpl extends DaoSupport<Long, CmCourseLesson, CmCo
         session.save(content);
     }
 
-    public void updateContent(CmCourseLesson module, CmCourseContent content, CmUser user) {
+    @Override
+    public void updateContent(CmCourseLessonSection section, CmCourseLessonContent content, CmUser user) {
         Validate.notNull(user, "User cannot be null");
+
         Session session = sessionFactory.getCurrentSession();
-        content.setLesson(module);
+        content.setSection(section);
 
         // prepare metadata
         CmMetadata metadata = content.getMetadata();
@@ -116,10 +190,11 @@ public class CmCourseLessonDaoImpl extends DaoSupport<Long, CmCourseLesson, CmCo
         session.update(content);
     }
 
-    public void removeContent(CmCourseLesson module, CmCourseContent content, CmUser user) {
+    @Override
+    public void removeContent(CmCourseLessonSection section, CmCourseLessonContent content, CmUser user) {
         Validate.notNull(user, "User cannot be null");
         Session session = sessionFactory.getCurrentSession();
-        content.setLesson(module);
+        content.setSection(section);
 
         // prepare metadata
         CmMetadata metadata = content.getMetadata();
@@ -130,24 +205,27 @@ public class CmCourseLessonDaoImpl extends DaoSupport<Long, CmCourseLesson, CmCo
         session.update(content);
     }
 
-    public void addContents(CmCourseLesson module, List<CmCourseContent> contents, CmUser user) {
+    @Override
+    public void addContents(CmCourseLessonSection section, List<? extends CmCourseLessonContent> contents, CmUser user) {
         Validate.notNull(user, "User cannot be null");
-        for (CmCourseContent lesson : contents) {
-            addContent(module, lesson, user);
+        for (CmCourseLessonContent content : contents) {
+            addContent(section, content, user);
         }
     }
 
-    public void updateContents(CmCourseLesson course, List<CmCourseContent> contents, CmUser user) {
+    @Override
+    public void updateContents(CmCourseLessonSection section, List<? extends CmCourseLessonContent> contents, CmUser user) {
         Validate.notNull(user, "User cannot be null");
-        for (CmCourseContent lesson : contents) {
-            updateContent(course, lesson, user);
+        for (CmCourseLessonContent content : contents) {
+            updateContent(section, content, user);
         }
     }
 
-    public void removeContents(CmCourseLesson module, List<CmCourseContent> contents, CmUser user) {
+    @Override
+    public void removeContents(CmCourseLessonSection section, List<? extends CmCourseLessonContent> contents, CmUser user) {
         Validate.notNull(user, "User cannot be null");
-        for (CmCourseContent lesson : contents) {
-            removeContent(module, lesson, user);
+        for (CmCourseLessonContent content : contents) {
+            removeContent(section, content, user);
         }
     }
 

@@ -30,6 +30,9 @@ public class CmCourseSessionLessonImpl implements CmCourseSessionLesson {
     @Column(name = "ORDR")
     private Integer order;
 
+    @Column(name = "SECTION_SHOWN")
+    private boolean sectionShown;
+
     @Enumerated(value = EnumType.ORDINAL)
     @Column(name = "DIFFICULTY")
     private CmDifficulty difficulty;
@@ -48,6 +51,10 @@ public class CmCourseSessionLessonImpl implements CmCourseSessionLesson {
 
     @Embedded
     private CmMetadata metadata;
+
+    public CmCourseSessionLessonImpl() {
+        setSectionShown(true);
+    }
 
     public Long getId() {
         return id;
@@ -87,6 +94,14 @@ public class CmCourseSessionLessonImpl implements CmCourseSessionLesson {
 
     public void setOrder(Integer order) {
         this.order = order;
+    }
+
+    public boolean isSectionShown() {
+        return sectionShown;
+    }
+
+    public void setSectionShown(boolean sectionShown) {
+        this.sectionShown = sectionShown;
     }
 
     public CmDifficulty getDifficulty() {

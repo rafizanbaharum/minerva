@@ -22,9 +22,9 @@ public class CmGradeImpl implements CmGrade {
     @JoinColumn(name = "STUDENT_ID")
     private CmStudent student;
 
-    @OneToOne(targetEntity = CmAssessmentImpl.class)
+    @OneToOne(targetEntity = CmCourseAssessmentImpl.class)
     @JoinColumn(name = "ASSESSMENT_ID")
-    private CmAssessment assessment;
+    private CmCourseAssessment assessment;
 
     @OneToOne(targetEntity = CmGradebookImpl.class)
     @JoinColumn(name = "GRADEBOOK_ID")
@@ -49,11 +49,11 @@ public class CmGradeImpl implements CmGrade {
         this.student = student;
     }
 
-    public CmAssessment getAssessment() {
+    public CmCourseAssessment getAssessment() {
         return assessment;
     }
 
-    public void setAssessment(CmAssessment assessment) {
+    public void setAssessment(CmCourseAssessment assessment) {
         this.assessment = assessment;
     }
 

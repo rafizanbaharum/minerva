@@ -65,7 +65,6 @@ public class CatalogFinderTest extends AbstractTransactionalJUnit4SpringContextT
         try {
             List<CmCourse> all = finder.findAll();
             for (CmCourse course : all) {
-                log.debug(course.getDescription());
                 log.debug(new Markdown4jProcessor().registerPlugins(new AssetPlugin()).process(course.getDescription()));
             }
         } catch (IOException e) {

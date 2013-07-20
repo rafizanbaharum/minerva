@@ -28,6 +28,9 @@ public class CmCourseLessonImpl implements CmCourseLesson {
     @Column(name = "KEYWORDS")
     private String keywords;
 
+    @Column(name = "SECTION_SHOWN")
+    private boolean sectionShown;
+
     @Column(name = "ORDR")
     private Integer order;
 
@@ -47,11 +50,16 @@ public class CmCourseLessonImpl implements CmCourseLesson {
     @JoinColumn(name = "MODULE_ID")
     private CmCourseModule module;
 
-    @OneToMany(targetEntity = CmCourseContentImpl.class, mappedBy = "lesson")
-    private List<CmCourseContent> contents;
+    @OneToMany(targetEntity = CmCourseLessonSectionImpl.class, mappedBy = "lesson")
+    private List<CmCourseLessonSection> sections;
 
     @Embedded
     private CmMetadata metadata;
+
+
+    public CmCourseLessonImpl() {
+        setSectionShown(true);
+    }
 
     public Long getId() {
         return id;
@@ -83,6 +91,14 @@ public class CmCourseLessonImpl implements CmCourseLesson {
 
     public void setKeywords(String keywords) {
         this.keywords = keywords;
+    }
+
+    public boolean isSectionShown() {
+        return sectionShown;
+    }
+
+    public void setSectionShown(boolean sectionShown) {
+        this.sectionShown = sectionShown;
     }
 
     public Integer getOrder() {
@@ -125,12 +141,12 @@ public class CmCourseLessonImpl implements CmCourseLesson {
         this.module = module;
     }
 
-    public List<CmCourseContent> getContents() {
-        return contents;
+    public List<CmCourseLessonSection> getSections() {
+        return sections;
     }
 
-    public void setContents(List<CmCourseContent> contents) {
-        this.contents = contents;
+    public void setSections(List<CmCourseLessonSection> sections) {
+        this.sections = sections;
     }
 
     public CmMetadata getMetadata() {

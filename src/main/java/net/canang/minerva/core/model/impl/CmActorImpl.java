@@ -17,12 +17,15 @@ public abstract class CmActorImpl implements CmActor {
 
     @Id
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(generator = "SEQ_FS_ACTOR")
-    @SequenceGenerator(name = "SEQ_FS_ACTOR", sequenceName = "SEQ_FS_ACTOR", allocationSize = 1)
+    @GeneratedValue(generator = "SEQ_CM_ACTR")
+    @SequenceGenerator(name = "SEQ_CM_ACTR", sequenceName = "SEQ_CM_ACTR", allocationSize = 1)
     private Long id;
 
     @Column(name = "IDENTITY_NO")
     private String identityNo;
+
+    @Column(name = "NRIC_NO")
+    private String nricNo;
 
     @Column(name = "NAME")
     private String name;
@@ -65,6 +68,14 @@ public abstract class CmActorImpl implements CmActor {
 
     public void setIdentityNo(String identityNo) {
         this.identityNo = identityNo;
+    }
+
+    public String getNricNo() {
+        return nricNo;
+    }
+
+    public void setNricNo(String nricNo) {
+        this.nricNo = nricNo;
     }
 
     public String getName() {

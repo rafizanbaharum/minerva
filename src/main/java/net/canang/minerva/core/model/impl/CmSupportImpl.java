@@ -1,5 +1,6 @@
 package net.canang.minerva.core.model.impl;
 
+import net.canang.minerva.core.model.CmActorType;
 import net.canang.minerva.core.model.CmSupport;
 
 import javax.persistence.Entity;
@@ -12,6 +13,10 @@ import javax.persistence.Table;
 @Table(name = "CM_SPPT")
 @Entity(name = "CmSupport")
 public class CmSupportImpl extends CmActorImpl implements CmSupport {
+
+    public CmSupportImpl() {
+        setActorType(CmActorType.SUPPORT);
+    }
 
     public String getStaffNo() {
         return getIdentityNo();

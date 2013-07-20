@@ -5,6 +5,7 @@ package net.canang.minerva.core.dao.impl;
  * @since 7/13/13
  */
 
+import net.canang.minerva.core.dao.CmCourseAssessmentDao;
 import net.canang.minerva.core.dao.CmCourseQuizDao;
 import net.canang.minerva.core.dao.DaoSupport;
 import net.canang.minerva.core.model.*;
@@ -12,6 +13,7 @@ import net.canang.minerva.core.model.impl.CmCourseQuizImpl;
 import org.apache.commons.lang.Validate;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
@@ -23,14 +25,16 @@ import java.util.List;
 @Repository("courseQuizDao")
 public class CmCourseQuizDaoImpl extends DaoSupport<Long, CmCourseQuiz, CmCourseQuizImpl> implements CmCourseQuizDao {
 
+    @Autowired
+    private CmCourseAssessmentDao assessmentDao;
+
     // =============================================================================
     // FINDER METHODS
     // =============================================================================
 
     @Override
     public CmCourseQuiz findById(Long id) {
-        Session session = sessionFactory.getCurrentSession();
-        return (CmCourseQuiz) session.get(CmCourseQuizImpl.class, id);
+        return (CmCourseQuiz) assessmentDao.findById(id);
     }
 
     @Override
@@ -159,7 +163,7 @@ public class CmCourseQuizDaoImpl extends DaoSupport<Long, CmCourseQuiz, CmCourse
     }
 
     @Override
-    public void addQuestion(CmCourseQuizSection section, CmCourseQuestion question, CmUser user) {
+    public void addQuestion(CmCourseQuizSection section, CmCourseQuizQuestion question, CmUser user) {
         Validate.notNull(user, "User cannot be null");
 
         Session session = sessionFactory.getCurrentSession();
@@ -175,7 +179,7 @@ public class CmCourseQuizDaoImpl extends DaoSupport<Long, CmCourseQuiz, CmCourse
     }
 
     @Override
-    public void updateQuestion(CmCourseQuizSection section, CmCourseQuestion question, CmUser user) {
+    public void updateQuestion(CmCourseQuizSection section, CmCourseQuizQuestion question, CmUser user) {
         Validate.notNull(user, "User cannot be null");
 
         Session session = sessionFactory.getCurrentSession();
@@ -190,7 +194,7 @@ public class CmCourseQuizDaoImpl extends DaoSupport<Long, CmCourseQuiz, CmCourse
     }
 
     @Override
-    public void removeQuestion(CmCourseQuizSection section, CmCourseQuestion question, CmUser user) {
+    public void removeQuestion(CmCourseQuizSection section, CmCourseQuizQuestion question, CmUser user) {
         Validate.notNull(user, "User cannot be null");
         Session session = sessionFactory.getCurrentSession();
         question.setSection(section);
@@ -205,25 +209,25 @@ public class CmCourseQuizDaoImpl extends DaoSupport<Long, CmCourseQuiz, CmCourse
     }
 
     @Override
-    public void addQuestions(CmCourseQuizSection section, List<CmCourseQuestion> questions, CmUser user) {
+    public void addQuestions(CmCourseQuizSection section, List<? extends CmCourseQuizQuestion> questions, CmUser user) {
         Validate.notNull(user, "User cannot be null");
-        for (CmCourseQuestion question : questions) {
+        for (CmCourseQuizQuestion question : questions) {
             addQuestion(section, question, user);
         }
     }
 
     @Override
-    public void updateQuestions(CmCourseQuizSection section, List<CmCourseQuestion> questions, CmUser user) {
+    public void updateQuestions(CmCourseQuizSection section, List<? extends CmCourseQuizQuestion> questions, CmUser user) {
         Validate.notNull(user, "User cannot be null");
-        for (CmCourseQuestion question : questions) {
+        for (CmCourseQuizQuestion question : questions) {
             updateQuestion(section, question, user);
         }
     }
 
     @Override
-    public void removeQuestions(CmCourseQuizSection section, List<CmCourseQuestion> questions, CmUser user) {
+    public void removeQuestions(CmCourseQuizSection section, List<? extends CmCourseQuizQuestion> questions, CmUser user) {
         Validate.notNull(user, "User cannot be null");
-        for (CmCourseQuestion question : questions) {
+        for (CmCourseQuizQuestion question : questions) {
             removeQuestion(section, question, user);
         }
     }

@@ -1,6 +1,6 @@
 package net.canang.minerva.core.model.impl;
 
-import net.canang.minerva.core.model.CmCourseQuestion;
+import net.canang.minerva.core.model.CmCourseQuizQuestion;
 import net.canang.minerva.core.model.CmCourseQuizSection;
 import net.canang.minerva.core.model.CmMetadata;
 import net.canang.minerva.core.model.CmCourseQuiz;
@@ -28,12 +28,15 @@ public class CmCourseQuizSectionImpl implements CmCourseQuizSection {
     @Column(name = "DESCRIPTION")
     private String description;
 
+    @Column(name = "ORDR")
+    private Integer order;
+
     @OneToOne(targetEntity = CmCourseQuizImpl.class)
     @JoinColumn(name = "QUIZ_ID")
     private CmCourseQuiz quiz;
 
-    @OneToMany(targetEntity = CmCourseQuestionImpl.class, mappedBy = "section")
-    private List<CmCourseQuestion> questions;
+    @OneToMany(targetEntity = CmCourseQuizQuestionImpl.class, mappedBy = "section")
+    private List<CmCourseQuizQuestion> questions;
 
     @Embedded
     private CmMetadata metadata;
@@ -62,11 +65,19 @@ public class CmCourseQuizSectionImpl implements CmCourseQuizSection {
         this.description = description;
     }
 
-    public List<CmCourseQuestion> getQuestions() {
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
+    public List<CmCourseQuizQuestion> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<CmCourseQuestion> questions) {
+    public void setQuestions(List<CmCourseQuizQuestion> questions) {
         this.questions = questions;
     }
 

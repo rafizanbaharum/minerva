@@ -10,19 +10,11 @@
 
 
 <h1>Course List</h1>
-
-<table class="list">
-    <tr>
-        <th>Code</th>
-        <th>Name</th>
-    </tr>
-    <c:forEach var="quiz" items="${courses}">
-        <tr>
-            <td>${quiz.code}</td>
-            <td>${quiz.name}</td>
-        </tr>
+<ul>
+    <c:forEach var="course" items="${courses}">
+        <li><a href="/course/${course.code}">${course.code} - ${course.name}</a></li>
     </c:forEach>
-</table>
+</ul>
 
 </body>
 </html>

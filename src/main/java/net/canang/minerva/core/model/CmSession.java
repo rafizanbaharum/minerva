@@ -8,6 +8,18 @@ import java.util.Date;
  */
 public interface CmSession {
 
+    String getCode();
+
+    void setCode(String code);
+
+    String getAlias();
+
+    void setAlias(String alias);
+
+    String getDescription();
+
+    void setDescription(String description);
+
     Date getStartDate();
 
     void setStartDate(Date startDate);

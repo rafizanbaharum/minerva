@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * %%% asset:id=11
+ * {{asset id=11}}
  *
  * @author rafizan.baharum
  * @since 7/14/13
@@ -19,21 +19,14 @@ public class AssetPlugin extends Plugin {
 
     private Logger log = LoggerFactory.getLogger(AssetPlugin.class);
 
-//    @Autowired
-//    private CmCourseAssetDao assetDao;
-
     public AssetPlugin() {
         super("asset");
     }
 
+
     @Override
-    public void emit(StringBuilder out, List<String> strings, Map<String, String> params) {
-        try {
-            log.debug("emit");
-            String assetId = params.get("id");
-            out.append("WWW");
-        } catch (RuntimeException e) {
-            log.debug("emit");
-        }
+    public void emit(StringBuilder out, List<String> lines, Map<String, String> params) {
+        log.debug("emit");
+        out.append("TEST");
     }
 }

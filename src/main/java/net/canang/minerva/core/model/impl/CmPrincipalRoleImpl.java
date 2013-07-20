@@ -17,8 +17,8 @@ public class CmPrincipalRoleImpl implements CmPrincipalRole {
 
     @Id
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(generator = "SEQ_CM_PCPL")
-    @SequenceGenerator(name = "SEQ_CM_PCPL", sequenceName = "SEQ_CM_PCPL", allocationSize = 1)
+    @GeneratedValue(generator = "SEQ_CM_PCPL_ROLE")
+    @SequenceGenerator(name = "SEQ_CM_PCPL_ROLE", sequenceName = "SEQ_CM_PCPL_ROLE", allocationSize = 1)
     private Long id;
 
     @Column(name = "ROLE_TYPE")

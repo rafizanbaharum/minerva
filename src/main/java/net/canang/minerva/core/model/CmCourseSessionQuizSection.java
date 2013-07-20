@@ -16,12 +16,16 @@ public interface CmCourseSessionQuizSection extends CmMetaObject{
 
     void setDescription(String description);
 
+    Integer getOrder();
+
+    void setOrder(Integer order);
+
     CmCourseSessionQuiz getQuiz();
 
     void setQuiz(CmCourseSessionQuiz quiz);
 
-    List<CmCourseSessionQuestion> getQuestions();
+    List<CmCourseSessionQuizQuestion> getQuestions();
 
-    void setQuestions(List<CmCourseSessionQuestion> questions);
+    void setQuestions(List<CmCourseSessionQuizQuestion> questions);
 
 }

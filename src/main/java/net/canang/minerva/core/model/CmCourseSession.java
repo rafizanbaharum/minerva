@@ -42,7 +42,6 @@ public interface CmCourseSession extends CmMetaObject {
 
     void setDepartment(CmDepartment department);
 
-
     CmSession getSession();
 
     void setSession(CmSession session);

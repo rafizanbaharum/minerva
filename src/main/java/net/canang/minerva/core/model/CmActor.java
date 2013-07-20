@@ -26,11 +26,9 @@ public interface CmActor extends CmMetaObject {
 
     void setAddress2(String address2);
 
-
     String getAddress3();
 
     void setAddress3(String address3);
-
 
     String getPhone();
 
@@ -43,5 +41,4 @@ public interface CmActor extends CmMetaObject {
     CmActorType getActorType();
 
     void setActorType(CmActorType actorType);
-
 }

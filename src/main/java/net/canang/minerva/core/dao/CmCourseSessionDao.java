@@ -1,25 +1,47 @@
 package net.canang.minerva.core.dao;
 
-import net.canang.minerva.core.model.CmCourseSession;
-import net.canang.minerva.core.model.CmDepartment;
-import net.canang.minerva.core.model.CmSession;
-import net.canang.minerva.core.model.CmUser;
+import net.canang.minerva.core.model.*;
 
 import java.util.List;
 
 /**
  * @author rafizan.baharum
- * @since 7/11/13
+ * @since 7/13/13
  */
 public interface CmCourseSessionDao {
 
-    List<CmCourseSession> getCourses(CmSession session);
+    // finders
 
-    List<CmCourseSession> getCourses(CmSession session, CmDepartment department);
+    CmCourseSession findById(Long id);
 
-    void save(CmCourseSession courseSession, CmUser user);
+    CmCourseSession findByCode(String code);
 
-    void update(CmCourseSession courseSession, CmUser user);
+    List<CmCourseSession> find(Integer offset, Integer limit);
 
-    void remove(CmCourseSession courseSession, CmUser user);
+    List<CmCourseSession> find(CmSession session);
+
+    List<CmCourseSession> find(CmSession session, CmDepartment department);
+
+    Integer count();
+
+    Integer count(String filter);
+
+    // cruds
+
+    void save(CmCourseSession course, CmUser user);
+
+    void update(CmCourseSession course, CmUser user);
+
+    void deactivate(CmCourseSession course, CmUser user);
+
+    void remove(CmCourseSession course, CmUser user);
+
+    void addModule(CmCourseSession course, CmCourseSessionModule module, CmUser user);
+
+    void addModules(CmCourseSession course, List<CmCourseSessionModule> modules, CmUser user);
+
+//    void addAsset(CmCourseSession course, CmCourseSessionAsset asset, CmUser user);
+//
+//    void addAssets(CmCourseSession course, List<CmCourseSessionAsset> assets, CmUser user);
+//
 }

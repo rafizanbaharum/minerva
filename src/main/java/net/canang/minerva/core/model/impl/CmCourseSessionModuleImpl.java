@@ -41,8 +41,8 @@ public class CmCourseSessionModuleImpl implements CmCourseSessionModule {
     @OneToMany(targetEntity = CmCourseSessionLessonImpl.class, mappedBy = "module")
     private List<CmCourseSessionLesson> lessons;
 
-    @OneToMany(targetEntity = CmCourseSessionQuizImpl.class, mappedBy = "module")
-    private List<CmCourseSessionQuiz> quizzes;
+    @OneToMany(targetEntity = CmCourseSessionAssessmentImpl.class, mappedBy = "module")
+    private List<CmCourseSessionAssessment> assessments;
 
     @Embedded
     private CmMetadata metadata;
@@ -111,12 +111,12 @@ public class CmCourseSessionModuleImpl implements CmCourseSessionModule {
         this.lessons = lessons;
     }
 
-    public List<CmCourseSessionQuiz> getQuizzes() {
-        return quizzes;
+    public List<CmCourseSessionAssessment> getAssessments() {
+        return assessments;
     }
 
-    public void setQuizzes(List<CmCourseSessionQuiz> quizzes) {
-        this.quizzes = quizzes;
+    public void setAssessments(List<CmCourseSessionAssessment> assessments) {
+        this.assessments = assessments;
     }
 
     public CmMetadata getMetadata() {

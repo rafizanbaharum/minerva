@@ -16,11 +16,16 @@ public interface CmCourseQuizSection extends CmMetaObject {
 
     void setDescription(String description);
 
+    Integer getOrder();
+
+    void setOrder(Integer order);
+
+
     CmCourseQuiz getQuiz();
 
     void setQuiz(CmCourseQuiz quiz);
 
-    List<CmCourseQuestion> getQuestions();
+    List<CmCourseQuizQuestion> getQuestions();
 
-    void setQuestions(List<CmCourseQuestion> questions);
+    void setQuestions(List<CmCourseQuizQuestion> questions);
 }

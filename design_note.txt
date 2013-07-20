@@ -121,33 +121,27 @@ Catalog
         Course                 (required/optional  core/elective)
             CourseModule
                 CourseLesson
-                    CourseContent
+                    CourseLessonSection
+                        CourseLessonContent
                 CourseQuiz
                     CourseQuizSection
-                        CourseQuestion
-                        CourseAnswers
-                CourseModuleTopic
+                        CourseQuizQuestion
+            CourseModuleTopic
             CourseTest
             CourseExamination
             CourseAssets
 
-        Android Programming
-            Android Service
-                Android Services
-                   Xxx
-                Defining Services
-                Broadcast Receiver
-                Starting Services
-                Communicating Services
-            Android Background Processing
-                Adroid UI Thread
-                Android Basics
-                Java Thread in Android
-                Concurrency in Android
-                Handler
-                AsyncTask
+COURSE        Android Programming
+MODULE              Android Service
+LESSON                      Android Services
+SECTION                             Defining Services
+                                    Broadcast Receiver
+                                    Starting Services
+                                    Communicating Services
+MODULE              Android Background Processing
+LESSON                      Adroid UI Thread
+                            Android Basics
 
-        Asset1
         Asset2
         Asset3
         Asset...
@@ -199,4 +193,6 @@ boleh do analytics on student per module
 
 
 
-
+Introduction to Android mobile programmming
+%%% asset src="1"
+%%%

@@ -167,8 +167,7 @@ public class CmCourseDaoImpl extends DaoSupport<Long, CmCourse, CmCourseImpl> im
         }
     }
 
-    
-    
+
     public void addAsset(CmCourse course, CmCourseAsset asset, CmUser user) {
         // sanity check
         Validate.notNull(user, "User cannot be null");

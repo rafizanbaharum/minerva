@@ -14,8 +14,8 @@ public interface CmGrade extends CmMetaObject {
 
     void setStudent(CmStudent student);
 
-    CmAssessment getAssessment();
+    CmCourseAssessment getAssessment();
 
-    void setAssessment(CmAssessment assessment);
+    void setAssessment(CmCourseAssessment assessment);
 
 }

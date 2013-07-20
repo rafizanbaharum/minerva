@@ -1,6 +1,6 @@
 package net.canang.minerva.core.dao;
 
-import net.canang.minerva.core.model.CmCourseQuestion;
+import net.canang.minerva.core.model.CmCourseQuizQuestion;
 import net.canang.minerva.core.model.CmCourseQuiz;
 import net.canang.minerva.core.model.CmCourseQuizSection;
 import net.canang.minerva.core.model.CmUser;
@@ -49,16 +49,16 @@ public interface CmCourseQuizDao {
 
     void removeSections(CmCourseQuiz quiz, List<CmCourseQuizSection> sections, CmUser user);
 
-    void addQuestion(CmCourseQuizSection section, CmCourseQuestion question, CmUser user);
+    void addQuestion(CmCourseQuizSection section, CmCourseQuizQuestion question, CmUser user);
 
-    void addQuestions(CmCourseQuizSection section, List<CmCourseQuestion> questions, CmUser user);
+    void addQuestions(CmCourseQuizSection section, List<? extends CmCourseQuizQuestion> questions, CmUser user);
 
-    void updateQuestion(CmCourseQuizSection section, CmCourseQuestion question, CmUser user);
+    void updateQuestion(CmCourseQuizSection section, CmCourseQuizQuestion question, CmUser user);
 
-    void updateQuestions(CmCourseQuizSection section, List<CmCourseQuestion> questions, CmUser user);
+    void updateQuestions(CmCourseQuizSection section, List<? extends CmCourseQuizQuestion> questions, CmUser user);
 
-    void removeQuestion(CmCourseQuizSection section, CmCourseQuestion question, CmUser user);
+    void removeQuestion(CmCourseQuizSection section, CmCourseQuizQuestion question, CmUser user);
 
-    void removeQuestions(CmCourseQuizSection section, List<CmCourseQuestion> questions, CmUser user);
+    void removeQuestions(CmCourseQuizSection section, List<? extends CmCourseQuizQuestion> questions, CmUser user);
 
 }

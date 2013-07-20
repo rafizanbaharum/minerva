@@ -1,3 +1,94 @@
+drop table CM_STDN_FMNT cascade constraints purge;
+drop table CM_CORS_RGTN cascade constraints purge;
+drop table CM_CORS_ERMN cascade constraints purge;
+drop sequence SEQ_CM_STDN_FMNT;
+drop sequence SEQ_CM_CORS_ERMN;
+
+drop table CM_CORS_SESN_QUIZ_RSPN cascade constraints purge;
+drop table CM_CORS_SESN_QUIZ_QSTN cascade constraints purge;
+drop table CM_CORS_SESN_QUIZ_SCTN cascade constraints purge;
+drop table CM_CORS_SESN_QUIZ cascade constraints purge;
+drop table CM_CORS_SESN_LSSN_CNTN cascade constraints purge;
+drop table CM_CORS_SESN_LSSN_SCTN cascade constraints purge;
+drop table CM_CORS_SESN_LSSN cascade constraints purge;
+drop table CM_CORS_SESN_EXMN cascade constraints purge;
+drop table CM_CORS_SESN_ASMT cascade constraints purge;
+drop table CM_CORS_SESN_MODL cascade constraints purge;
+drop table CM_CORS_SESN cascade constraints purge;
+drop sequence SEQ_CM_CORS_SESN_QUIZ_RSPN;
+drop sequence SEQ_CM_CORS_SESN_QUIZ_QSTN;
+drop sequence SEQ_CM_CORS_SESN_QUIZ_SCTN;
+drop sequence SEQ_CM_CORS_SESN_QUIZ;
+drop sequence SEQ_CM_CORS_SESN_LSSN_CNTN;
+drop sequence SEQ_CM_CORS_SESN_LSSN_SCTN;
+drop sequence SEQ_CM_CORS_SESN_LSSN;
+drop sequence SEQ_CM_CORS_SESN_ASMT;
+drop sequence SEQ_CM_CORS_SESN_MODL;
+drop sequence SEQ_CM_CORS_SESN;
+
+
+drop table CM_CORS_QUIZ_SJTV_QSTN cascade constraints purge;
+drop table CM_CORS_QUIZ_MCHC_QSTN cascade constraints purge;
+drop table CM_CORS_QUIZ_BOLN_QSTN cascade constraints purge;
+drop table CM_CORS_QUIZ_SMSN_QSTN cascade constraints purge;
+drop table CM_CORS_QUIZ_QSTN cascade constraints purge;
+drop table CM_CORS_QUIZ_SCTN cascade constraints purge;
+drop table CM_CORS_QUIZ cascade constraints purge;
+drop table CM_CORS_MODL cascade constraints purge;
+drop table CM_CORS_LSSN_CNTN cascade constraints purge;
+drop table CM_CORS_LSSN_SCTN cascade constraints purge;
+drop table CM_CORS_LSSN cascade constraints purge;
+drop table CM_CORS_EXMN cascade constraints purge;
+drop table CM_CORS_ASMT cascade constraints purge;
+drop table CM_CORS_ASST cascade constraints purge;
+drop table CM_CORS cascade constraints purge;
+
+drop sequence SEQ_CM_CORS_QUIZ_QSTN;
+drop sequence SEQ_CM_CORS_QUIZ_SCTN;
+drop sequence SEQ_CM_CORS_LSSN_CNTN;
+drop sequence SEQ_CM_CORS_LSSN_SCTN;
+drop sequence SEQ_CM_CORS_LSSN;
+drop sequence SEQ_CM_CORS_MODL;
+drop sequence SEQ_CM_CORS_ASST;
+drop sequence SEQ_CM_CORS_ASMT;
+drop sequence SEQ_CM_CORS;
+
+drop table CM_GRBK cascade constraints purge;
+drop table CM_GRDE cascade constraints purge;
+drop table CM_SESN cascade constraints purge;
+drop sequence SEQ_CM_GRBK;
+drop sequence SEQ_CM_GRDE;
+drop sequence SEQ_CM_SESN;
+
+drop table CM_FCTY cascade constraints purge;
+drop table CM_DEPT cascade constraints purge;
+drop table CM_UNIT cascade constraints purge;
+drop sequence SEQ_CM_FCTY;
+drop sequence SEQ_CM_DEPT;
+drop sequence SEQ_CM_UNIT;
+
+drop table CM_DOCM cascade constraints purge;
+drop table CM_MODL cascade constraints purge;
+drop table CM_SMDL cascade constraints purge;
+drop sequence SEQ_CM_MODL;
+drop sequence SEQ_CM_SMDL;
+drop sequence SEQ_CM_DOCM;
+
+drop table CM_STDN cascade constraints purge;
+drop table CM_INTR cascade constraints purge;
+drop table CM_SPPT cascade constraints purge;
+drop table CM_ACTR cascade constraints purge;
+drop table CM_GROP_MMBR cascade constraints purge;
+drop table CM_GROP cascade constraints purge;
+drop table CM_USER cascade constraints purge;
+drop table CM_PCPL_ROLE cascade constraints purge;
+drop table CM_PCPL cascade constraints purge;
+drop sequence SEQ_CM_ACTR;
+drop sequence SEQ_CM_GROP_MMBR;
+drop sequence SEQ_CM_PCPL_ROLE;
+drop sequence SEQ_CM_PCPL;
+
+
 insert into CM_PCPL (ID, NAME, PRINCIPAL_TYPE, LOCKED, M_ST, C_ID, C_TS) values (1, 'root', 0, 1, 1, 0, TIMESTAMP '2013-01-01 00:00:00');
 insert into CM_USER (ID, REALNAME, PASSWORD, EMAIL, ACTOR_ID) values (1, 'System Root', '6367c48dd193d56ea7b0baad25b19455e529f5ee', 'rafizan.baharum@gmail.com', null);
 insert into CM_PCPL_ROLE (ID, ROLE_TYPE, PRINCIPAL_ID, M_ST, C_ID, C_TS) values(1, 0, 1, 1, 1, SYSTIMESTAMP);

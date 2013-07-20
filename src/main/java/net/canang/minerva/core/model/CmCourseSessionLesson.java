@@ -4,7 +4,7 @@ package net.canang.minerva.core.model;
  * @author rafizan.baharum
  * @since 7/11/13
  */
-public interface CmCourseSessionLesson extends CmMetaObject{
+public interface CmCourseSessionLesson extends CmMetaObject {
 
     String getTitle();
 
@@ -21,6 +21,10 @@ public interface CmCourseSessionLesson extends CmMetaObject{
     Integer getOrder();
 
     void setOrder(Integer order);
+
+    boolean isSectionShown();
+
+    void setSectionShown(boolean sectionShown);
 
     CmDifficulty getDifficulty();
 

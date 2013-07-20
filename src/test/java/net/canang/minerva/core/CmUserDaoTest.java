@@ -5,6 +5,9 @@ import net.canang.minerva.core.dao.CmUserDao;
 import net.canang.minerva.core.model.CmPrincipalType;
 import net.canang.minerva.core.model.CmUser;
 import net.canang.minerva.core.model.impl.CmUserImpl;
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +36,9 @@ public class CmUserDaoTest extends AbstractTransactionalJUnit4SpringContextTests
     private Logger log = LoggerFactory.getLogger(CmUserDaoTest.class);
 
     @Autowired
+    private SessionFactory sessionFactory;
+
+    @Autowired
     private CmUserDao userDao;
 
     @Autowired
@@ -45,15 +51,30 @@ public class CmUserDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 
     @Before
     public void setUp() {
+
+        Session session = sessionFactory.getCurrentSession();
+        SQLQuery query = session.createSQLQuery("insert into CM_PCPL (ID, NAME, PRINCIPAL_TYPE, LOCKED, M_ST, C_ID, C_TS) values (1, 'root', 0, 1, 1, 0, TIMESTAMP '2013-01-01 00:00:00')");
+        query.executeUpdate();
+        query = session.createSQLQuery("insert into CM_USER (ID, REALNAME, PASSWORD, EMAIL, ACTOR_ID) values (1, 'System Root', '6367c48dd193d56ea7b0baad25b19455e529f5ee', 'rafizan.baharum@gmail.com', null)");
+        query.executeUpdate();
+        query = session.createSQLQuery("insert into CM_PCPL_ROLE (ID, ROLE_TYPE, PRINCIPAL_ID, M_ST, C_ID, C_TS) values(1, 0, 1, 1, 1, SYSTIMESTAMP)");
+        query.executeUpdate();
+
         log.debug("logging in user");
         log.debug(passwordEncoder.encodePassword("abc123", null));
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken("root", "abc123");
-
         Authentication authed = authenticationManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authed);
-
-        root = userDao.findByUsername("root");
     }
+
+
+    @Test
+    @Rollback(value = true)
+    public void findUser() {
+        root = userDao.findByUsername("root");
+        Assert.assertNotNull(root);
+    }
+
 
     @Test
     @Rollback(value = true)

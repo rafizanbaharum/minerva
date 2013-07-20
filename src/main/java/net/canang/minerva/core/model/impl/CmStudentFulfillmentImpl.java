@@ -8,14 +8,14 @@ import javax.persistence.*;
  * @author rafizan.baharum
  * @since 7/10/13
  */
-@Table(name = "CM_STDN_FMNT")
+@Table(name = "CM_STDN_FLMN")
 @Entity(name = "CmStudentFulfillment")
 public class CmStudentFulfillmentImpl implements CmStudentFulfillment {
 
     @Id
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(generator = "SEQ_CM_STDN_FMNT")
-    @SequenceGenerator(name = "SEQ_CM_STDN_FMNT", sequenceName = "SEQ_CM_STDN_FMNT", allocationSize = 1)
+    @GeneratedValue(generator = "SEQ_CM_STDN_FLMN")
+    @SequenceGenerator(name = "SEQ_CM_STDN_FLMN", sequenceName = "SEQ_CM_STDN_FLMN", allocationSize = 1)
     private Long id;
 
     @OneToOne(targetEntity = CmCourseSessionImpl.class)

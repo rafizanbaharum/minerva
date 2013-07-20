@@ -47,4 +47,5 @@ public interface CmCourse extends CmMetaObject {
     List<CmCourseAsset> getAssets();
 
     void setAssets(List<CmCourseAsset> assets);
+
 }

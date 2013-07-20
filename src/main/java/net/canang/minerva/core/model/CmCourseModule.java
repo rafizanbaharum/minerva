@@ -36,5 +36,7 @@ public interface CmCourseModule extends CmMetaObject {
 
     void setLessons(List<CmCourseLesson> lessons);
 
-    List<CmCourseQuiz> getQuizzes();
+    List<CmCourseAssessment> getAssessments();
+
+    void setAssessments(List<CmCourseAssessment> assessments);
 }

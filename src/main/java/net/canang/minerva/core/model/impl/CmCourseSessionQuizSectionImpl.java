@@ -25,12 +25,15 @@ public class CmCourseSessionQuizSectionImpl implements CmCourseSessionQuizSectio
     @Column(name = "DESCRIPTION")
     private String description;
 
+    @Column(name = "ORDR")
+    private Integer order;
+
     @OneToOne(targetEntity = CmCourseSessionQuizImpl.class)
     @JoinColumn(name = "QUIZ_ID")
     private CmCourseSessionQuiz quiz;
 
-    @OneToMany(targetEntity = CmCourseSessionQuestionImpl.class, mappedBy = "section")
-    private List<CmCourseSessionQuestion> questions;
+    @OneToMany(targetEntity = CmCourseSessionQuizQuestionImpl.class, mappedBy = "section")
+    private List<CmCourseSessionQuizQuestion> questions;
 
     @Embedded
     private CmMetadata metadata = new CmMetadata();
@@ -59,6 +62,14 @@ public class CmCourseSessionQuizSectionImpl implements CmCourseSessionQuizSectio
         this.description = description;
     }
 
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
     public CmCourseSessionQuiz getQuiz() {
         return quiz;
     }
@@ -67,11 +78,11 @@ public class CmCourseSessionQuizSectionImpl implements CmCourseSessionQuizSectio
         this.quiz = quiz;
     }
 
-    public List<CmCourseSessionQuestion> getQuestions() {
+    public List<CmCourseSessionQuizQuestion> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<CmCourseSessionQuestion> questions) {
+    public void setQuestions(List<CmCourseSessionQuizQuestion> questions) {
         this.questions = questions;
     }
 

@@ -14,7 +14,11 @@ public interface CmCourseModuleDao {
 
     CmCourseModule findById(Long id);
 
-    CmCourseModule findByCode(String code);
+    CmCourseModule findByOrder(CmCourse course, Integer order);
+
+    CmCourseAssessment findAssessmentById(Long id);
+
+    CmCourseLesson findLessonById(Long id);
 
     List<CmCourseModule> find(Integer offset, Integer limit);
 
@@ -46,28 +50,16 @@ public interface CmCourseModuleDao {
 
     void removeLessons(CmCourseModule module, List<CmCourseLesson> lesson, CmUser user);
 
-    void addQuiz(CmCourseModule module, CmCourseQuiz quiz, CmUser user);
+    void addAssessment(CmCourseModule module, CmCourseAssessment assessment, CmUser user);
 
-    void addQuizzes(CmCourseModule module, List<CmCourseQuiz> quiz, CmUser user);
+    void addAssessments(CmCourseModule module, List<? extends CmCourseAssessment> assessments, CmUser user);
 
-    void updateQuiz(CmCourseModule module, CmCourseQuiz quiz, CmUser user);
+    void updateAssessment(CmCourseModule module, CmCourseAssessment assessment, CmUser user);
 
-    void updateQuizzes(CmCourseModule module, List<CmCourseQuiz> quiz, CmUser user);
+    void updateAssessments(CmCourseModule module, List<? extends CmCourseAssessment> assessments, CmUser user);
 
-    void removeQuiz(CmCourseModule module, CmCourseQuiz quiz, CmUser user);
+    void removeAssessment(CmCourseModule module, CmCourseAssessment assessment, CmUser user);
 
-    void removeQuizzes(CmCourseModule module, List<CmCourseQuiz> quiz, CmUser user);
-
-    void addContent(CmCourseLesson lesson, CmCourseContent content, CmUser user);
-
-    void addContents(CmCourseLesson lesson, List<CmCourseContent> content, CmUser user);
-
-    void updateContent(CmCourseLesson lesson, CmCourseContent content, CmUser user);
-
-    void updateContents(CmCourseLesson lesson, List<CmCourseContent> content, CmUser user);
-
-    void removeContent(CmCourseLesson lesson, CmCourseContent content, CmUser user);
-
-    void removeContents(CmCourseLesson lesson, List<CmCourseContent> content, CmUser user);
+    void removeAssessments(CmCourseModule module, List<? extends CmCourseAssessment> assessments, CmUser user);
 
 }

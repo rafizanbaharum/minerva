@@ -8,6 +8,8 @@ package net.canang.minerva.core.dao.impl;
 import net.canang.minerva.core.dao.CmCourseModuleDao;
 import net.canang.minerva.core.dao.DaoSupport;
 import net.canang.minerva.core.model.*;
+import net.canang.minerva.core.model.impl.CmCourseAssessmentImpl;
+import net.canang.minerva.core.model.impl.CmCourseLessonImpl;
 import net.canang.minerva.core.model.impl.CmCourseModuleImpl;
 import org.apache.commons.lang.Validate;
 import org.hibernate.Query;
@@ -34,11 +36,27 @@ public class CmCourseModuleDaoImpl extends DaoSupport<Long, CmCourseModule, CmCo
     }
 
     @Override
-    public CmCourseModule findByCode(String code) {
+    public CmCourseModule findByOrder(CmCourse course, Integer order) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select a from CmCourseModule a where a.code = :code");
-        query.setString("code", code);
+        Query query = session.createQuery("select a from CmCourseModule a where " +
+                "a.course = :course " +
+                "and a.order = :order");
+        query.setEntity("course", course);
+        query.setInteger("order", order);
         return (CmCourseModule) query.uniqueResult();
+
+    }
+
+    @Override
+    public CmCourseAssessment findAssessmentById(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+        return (CmCourseAssessment) session.get(CmCourseAssessmentImpl.class, id);
+    }
+
+    @Override
+    public CmCourseLesson findLessonById(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+        return (CmCourseLesson) session.get(CmCourseLessonImpl.class, id);
     }
 
     @Override
@@ -46,7 +64,7 @@ public class CmCourseModuleDaoImpl extends DaoSupport<Long, CmCourseModule, CmCo
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("select a from CmCourseModule a where " +
                 "a.metadata.state = :state " +
-                "order by a.code");
+                "order by a.order");
         query.setInteger("state", CmMetaState.ACTIVE.ordinal());
         query.setFirstResult(offset);
         query.setMaxResults(limit);
@@ -57,7 +75,7 @@ public class CmCourseModuleDaoImpl extends DaoSupport<Long, CmCourseModule, CmCo
     public List<CmCourseModule> find(String filter, Integer offset, Integer limit) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("select a from CmCourseModule a where " +
-                "(a.code like upper(:filter) " +
+                "(a.title like upper(:filter) " +
                 "or upper(a.description) like upper(:filter)) " +
                 "and a.metadata.state = :state");
         query.setString("filter", WILDCARD + filter + WILDCARD);
@@ -159,146 +177,74 @@ public class CmCourseModuleDaoImpl extends DaoSupport<Long, CmCourseModule, CmCo
     }
 
     @Override
-    public void addQuiz(CmCourseModule module, CmCourseQuiz quiz, CmUser user) {
+    public void addAssessment(CmCourseModule module, CmCourseAssessment assessment, CmUser user) {
         Validate.notNull(user, "User cannot be null");
 
         Session session = sessionFactory.getCurrentSession();
-        quiz.setModule(module);
+        assessment.setModule(module);
 
         // prepare metadata
         CmMetadata metadata = new CmMetadata();
         metadata.setCreatedDate(new Timestamp(System.currentTimeMillis()));
         metadata.setCreator(user.getId());
         metadata.setState(CmMetaState.ACTIVE);
-        quiz.setMetadata(metadata);
-        session.save(quiz);
+        assessment.setMetadata(metadata);
+        session.save(assessment);
     }
 
     @Override
-    public void updateQuiz(CmCourseModule module, CmCourseQuiz quiz, CmUser user) {
+    public void updateAssessment(CmCourseModule module, CmCourseAssessment assessment, CmUser user) {
         Validate.notNull(user, "User cannot be null");
 
         Session session = sessionFactory.getCurrentSession();
-        quiz.setModule(module);
+        assessment.setModule(module);
 
         // prepare metadata
-        CmMetadata metadata = quiz.getMetadata();
+        CmMetadata metadata = assessment.getMetadata();
         metadata.setModifiedDate(new Timestamp(System.currentTimeMillis()));
         metadata.setModifier(user.getId());
-        quiz.setMetadata(metadata);
-        session.update(quiz);
+        assessment.setMetadata(metadata);
+        session.update(assessment);
     }
 
     @Override
-    public void removeQuiz(CmCourseModule module, CmCourseQuiz quiz, CmUser user) {
+    public void removeAssessment(CmCourseModule module, CmCourseAssessment assessment, CmUser user) {
         Validate.notNull(user, "User cannot be null");
         Session session = sessionFactory.getCurrentSession();
-        quiz.setModule(module);
+        assessment.setModule(module);
 
         // prepare metadata
-        CmMetadata metadata = quiz.getMetadata();
-        metadata.setModifiedDate(new Timestamp(System.currentTimeMillis()));
-        metadata.setModifier(user.getId());
-        metadata.setState(CmMetaState.INACTIVE);
-        quiz.setMetadata(metadata);
-        session.update(quiz);
-    }
-
-    @Override
-    public void addQuizzes(CmCourseModule module, List<CmCourseQuiz> quizzes, CmUser user) {
-        Validate.notNull(user, "User cannot be null");
-        for (CmCourseQuiz quiz : quizzes) {
-            addQuiz(module, quiz, user);
-        }
-    }
-
-    @Override
-    public void updateQuizzes(CmCourseModule course, List<CmCourseQuiz> quizzes, CmUser user) {
-        Validate.notNull(user, "User cannot be null");
-        for (CmCourseQuiz quiz : quizzes) {
-            updateQuiz(course, quiz, user);
-        }
-    }
-
-    @Override
-    public void removeQuizzes(CmCourseModule module, List<CmCourseQuiz> quizzes, CmUser user) {
-        Validate.notNull(user, "User cannot be null");
-        for (CmCourseQuiz quiz : quizzes) {
-            removeQuiz(module, quiz, user);
-        }
-    }
-
-
-    @Override
-    public void addContent(CmCourseLesson lesson, CmCourseContent content, CmUser user) {
-        Validate.notNull(user, "User cannot be null");
-
-        Session session = sessionFactory.getCurrentSession();
-        content.setLesson(lesson);
-
-        // prepare metadata
-        CmMetadata metadata = new CmMetadata();
-        metadata.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-        metadata.setCreator(user.getId());
-        metadata.setState(CmMetaState.ACTIVE);
-        content.setMetadata(metadata);
-        session.save(content);
-    }
-
-    @Override
-    public void updateContent(CmCourseLesson lesson, CmCourseContent content, CmUser user) {
-        Validate.notNull(user, "User cannot be null");
-
-        Session session = sessionFactory.getCurrentSession();
-        content.setLesson(lesson);
-
-        // prepare metadata
-        CmMetadata metadata = content.getMetadata();
-        metadata.setModifiedDate(new Timestamp(System.currentTimeMillis()));
-        metadata.setModifier(user.getId());
-        content.setMetadata(metadata);
-        session.update(content);
-    }
-
-    @Override
-    public void removeContent(CmCourseLesson lesson, CmCourseContent content, CmUser user) {
-        Validate.notNull(user, "User cannot be null");
-        Session session = sessionFactory.getCurrentSession();
-        content.setLesson(lesson);
-
-        // prepare metadata
-        CmMetadata metadata = content.getMetadata();
+        CmMetadata metadata = assessment.getMetadata();
         metadata.setModifiedDate(new Timestamp(System.currentTimeMillis()));
         metadata.setModifier(user.getId());
         metadata.setState(CmMetaState.INACTIVE);
-        content.setMetadata(metadata);
-        session.update(content);
+        assessment.setMetadata(metadata);
+        session.update(assessment);
     }
 
     @Override
-    public void addContents(CmCourseLesson lesson, List<CmCourseContent> contents, CmUser user) {
+    public void addAssessments(CmCourseModule module, List<? extends CmCourseAssessment> assessments, CmUser user) {
         Validate.notNull(user, "User cannot be null");
-        for (CmCourseContent content : contents) {
-            addContent(lesson, content, user);
+        for (CmCourseAssessment assessment : assessments) {
+            addAssessment(module, assessment, user);
         }
     }
 
     @Override
-    public void updateContents(CmCourseLesson course, List<CmCourseContent> contents, CmUser user) {
+    public void updateAssessments(CmCourseModule course, List<? extends CmCourseAssessment> assessments, CmUser user) {
         Validate.notNull(user, "User cannot be null");
-        for (CmCourseContent content : contents) {
-            updateContent(course, content, user);
+        for (CmCourseAssessment assessment : assessments) {
+            updateAssessment(course, assessment, user);
         }
     }
 
     @Override
-    public void removeContents(CmCourseLesson lesson, List<CmCourseContent> contents, CmUser user) {
+    public void removeAssessments(CmCourseModule module, List<? extends CmCourseAssessment> assessments, CmUser user) {
         Validate.notNull(user, "User cannot be null");
-        for (CmCourseContent content : contents) {
-            removeContent(lesson, content, user);
+        for (CmCourseAssessment assessment : assessments) {
+            removeAssessment(module, assessment, user);
         }
     }
-
 
     // =============================================================================
     // CRUD METHODS

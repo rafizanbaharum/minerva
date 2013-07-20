@@ -1,8 +1,6 @@
 package net.canang.minerva.core.dao;
 
-import net.canang.minerva.core.model.CmCourseContent;
-import net.canang.minerva.core.model.CmCourseLesson;
-import net.canang.minerva.core.model.CmUser;
+import net.canang.minerva.core.model.*;
 
 import java.util.List;
 
@@ -10,7 +8,6 @@ import java.util.List;
  * @author rafizan.baharum
  * @since 7/13/13
  */
-@Deprecated
 public interface CmCourseLessonDao {
 
     // finders
@@ -37,8 +34,28 @@ public interface CmCourseLessonDao {
 
     void remove(CmCourseLesson lesson, CmUser user);
 
-    void addContent(CmCourseLesson lesson, CmCourseContent content, CmUser user);
+    void addSection(CmCourseLesson lesson, CmCourseLessonSection section, CmUser user);
 
-    void addContents(CmCourseLesson lesson, List<CmCourseContent> contents, CmUser user);
+    void addSections(CmCourseLesson lesson, List<CmCourseLessonSection> sections, CmUser user);
+
+    void updateSection(CmCourseLesson lesson, CmCourseLessonSection section, CmUser user);
+
+    void updateSections(CmCourseLesson lesson, List<CmCourseLessonSection> sections, CmUser user);
+
+    void removeSection(CmCourseLesson lesson, CmCourseLessonSection section, CmUser user);
+
+    void removeSections(CmCourseLesson lesson, List<CmCourseLessonSection> sections, CmUser user);
+
+    void addContent(CmCourseLessonSection section, CmCourseLessonContent content, CmUser user);
+
+    void addContents(CmCourseLessonSection section, List<? extends CmCourseLessonContent> contents, CmUser user);
+
+    void updateContent(CmCourseLessonSection section, CmCourseLessonContent content, CmUser user);
+
+    void updateContents(CmCourseLessonSection section, List<? extends CmCourseLessonContent> contents, CmUser user);
+
+    void removeContent(CmCourseLessonSection section, CmCourseLessonContent content, CmUser user);
+
+    void removeContents(CmCourseLessonSection section, List<? extends CmCourseLessonContent> contents, CmUser user);
 
 }

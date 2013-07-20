@@ -211,7 +211,6 @@ public class DaoSupport<K, I, E> implements InitializingBean {
         session.update(entity);
     }
 
-
     /**
      * @param entity
      * @param user

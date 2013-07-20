@@ -6,9 +6,9 @@ package net.canang.minerva.core.model;
  */
 public interface CmCourseEnrollment {
 
-    CmCourseSession getSession();
+    CmCourseSession getCourse();
 
-    void setSession(CmCourseSession session);
+    void setCourse(CmCourseSession session);
 
     CmStudent getStudent();
 

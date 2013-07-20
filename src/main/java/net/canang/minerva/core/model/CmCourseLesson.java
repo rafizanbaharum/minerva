@@ -20,6 +20,10 @@ public interface CmCourseLesson extends CmMetaObject {
 
     void setKeywords(String keywords);
 
+    boolean isSectionShown();
+
+    void setSectionShown(boolean sectionShown);
+
     Integer getOrder();
 
     void setOrder(Integer order);
@@ -40,8 +44,8 @@ public interface CmCourseLesson extends CmMetaObject {
 
     void setModule(CmCourseModule module);
 
-    List<CmCourseContent> getContents();
+    List<CmCourseLessonSection> getSections();
 
-    void setContents(List<CmCourseContent> contents);
+    void setSections(List<CmCourseLessonSection> sections);
 
 }
